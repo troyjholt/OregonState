@@ -4,6 +4,18 @@ function Automobile(year, make, model, type)
     this.make = make; //string (ex. Honda, Ford)
     this.model = model; //string (ex. Accord, Focus)
     this.type = type; //string (ex. Pickup, SUV)
+    this.logme = function logme(thing)//bool (ex. true or false ;) )
+    {
+        if (thing == true)
+        {
+            console.log(this.year + ' ' + this.make + ' ' + this.model + ' ' + this.type);
+        }
+        else
+        {
+            console.log(this.year + ' ' + this.make + ' ' + this.model);
+        }
+        return;
+    };
 }
 
 var automobiles = [
@@ -21,27 +33,28 @@ var automobiles = [
  * index 0 and the smallest in the last index*/
 function sortArr(comparator, array)
 {
-    for (var i = 0; i < array.length; i++)
+    var ret = array;
+    var comp = comparator;
+    for (var i = 0; i < ret.length; i++)
     {
-        for (j = 0; j < array.length; j++)
+        for (j = 0; j < (ret.length - 1); j++)
         {
             var holder;
-            if (comparator(array[j], array[j + 1]) == true)
+            if (comp(ret[j], ret[j + 1]) == true)
             {
-                return;
+                // do nothing
             }
 
             else
             {
-                holder = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = holder;
-                return;
+                holder = ret[j];
+                ret[j] = ret[j + 1];
+                ret[j + 1] = holder;
             }
         }
     }
-    return array;
-    //return array.sort(comparator).reverse();
+    return ret;
+   //return array.sort(comparator).reverse();
 }
 
 /*A comparator takes two arguments and uses some algorithm to compare them.
@@ -103,27 +116,27 @@ function typeComparator(auto1, auto2)
     var car1;
     var car2;
 
-    if (auto1.type == "roadster")
+    if (auto1.type.toLowerCase() == "roadster")
     {
         car1 = 0;
     }
 
-    else if (auto1.type == "pickup")
+    else if (auto1.type.toLowerCase() == "pickup")
     {
         car1 = 1;
     }
 
-    else if (auto1.type == "suv")
+    else if (auto1.type.toLowerCase() == "suv")
     {
         car1 = 2;
     }
 
-    else if (auto1.type == "suv")
+    else if (auto1.type.toLowerCase() == "wagon")
     {
         car1 = 3;
     }
 
-    else if (auto1.type == "wagon")
+    else if (auto1.type.toLowerCase() == "sedan")
     {
         car1 = 4;
     }
@@ -133,27 +146,27 @@ function typeComparator(auto1, auto2)
         car1 = 5;
     }
 
-    if (auto2.type == "roadster")
+    if (auto2.type.toLowerCase() == "roadster")
     {
         car2 = 0;
     }
 
-    else if (auto2.type == "pickup")
+    else if (auto2.type.toLowerCase() == "pickup")
     {
         car2 = 1;
     }
 
-    else if (auto2.type == "suv")
+    else if (auto2.type.toLowerCase() == "suv")
     {
         car2 = 2;
     }
 
-    else if (auto2.type == "suv")
+    else if (auto2.type.toLowerCase() == "wagon")
     {
         car2 = 3;
     }
 
-    else if (auto2.type == "wagon")
+    else if (auto2.type.toLowerCase() == "sedan")
     {
         car2 = 4;
     }
@@ -163,12 +176,12 @@ function typeComparator(auto1, auto2)
         car2 = 5;
     }
 
-    if (car1 > car2)
+    if (car1 < car2)
     {
         return true;
     }
 
-    else if (car1 < car2)
+    else if (car1 > car2)
     {
         return false;
     }
@@ -222,36 +235,32 @@ The cars sorted by type are:
 As an example of the content in the parenthesis:
 1990 Ford F-150 */
 
-
-let printAutomobile = function (auto)
-{
-    console.log(' ' + auto.year + ' ' + auto.make + ' ' + auto.model + ' ' + auto.type);
-    return;
-}
-
 console.log("*****");
 var array = [];
-
 console.log("The cars sorted by year are:");
 array = sortArr(yearComparator, automobiles);
-for (var item of array)
+for (var k = 0; k < array.length; k++)
 {
-    printAutomobile(item);
+    //console.log("this is a test")
+    array[k].logme(true);
 }
-console.log();
+
+console.log(" ");
 
 console.log("The cars sorted by make are:");
 array = sortArr(makeComparator, automobiles);
-for (var item of array)
+for (var k = 0; k < array.length; k++)
 {
-    printAutomobile(item);
+    //console.log("this is a test")
+    array[k].logme(true);
 }
-console.log();
+console.log(" ");
 
 console.log("The cars sorted by type are:");
 array = sortArr(typeComparator, automobiles);
-for (var item of array)
+for (var k = 0; k < array.length; k++)
 {
-    printAutomobile(item);
+    //console.log("this is a test")
+    array[k].logme(true);
 }
 console.log("*****");
