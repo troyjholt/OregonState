@@ -21,7 +21,27 @@ var automobiles = [
  * index 0 and the smallest in the last index*/
 function sortArr(comparator, array)
 {
-    return array.sort(comparator).reverse();
+    for (var i = 0; i < array.length; i++)
+    {
+        for (j = 0; j < array.length; j++)
+        {
+            var holder;
+            if (comparator(array[j], array[j + 1]) == true)
+            {
+                return;
+            }
+
+            else
+            {
+                holder = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = holder;
+                return;
+            }
+        }
+    }
+    return array;
+    //return array.sort(comparator).reverse();
 }
 
 /*A comparator takes two arguments and uses some algorithm to compare them.
@@ -212,7 +232,7 @@ let printAutomobile = function (auto)
 console.log("*****");
 var array = [];
 
-console.log('The cars sorted by year are:');
+console.log("The cars sorted by year are:");
 array = sortArr(yearComparator, automobiles);
 for (var item of array)
 {
@@ -220,7 +240,7 @@ for (var item of array)
 }
 console.log();
 
-console.log('The cars sorted by make are:');
+console.log("The cars sorted by make are:");
 array = sortArr(makeComparator, automobiles);
 for (var item of array)
 {
@@ -228,10 +248,10 @@ for (var item of array)
 }
 console.log();
 
-console.log('The cars sorted by type are:');
+console.log("The cars sorted by type are:");
 array = sortArr(typeComparator, automobiles);
 for (var item of array)
 {
     printAutomobile(item);
 }
-console.log('*****');
+console.log("*****");
