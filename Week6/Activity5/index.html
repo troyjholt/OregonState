@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Activity 5 by TJ Holt</title>
+
+</head>
+<body>
+    <h1> Activity 5 by TJ Holt</h1>
+    <form>
+        <fieldset>
+            <legend>Activity 5 - Part 1 - Weather Map</legend>
+            <label for="city_name_field"></label>
+            City: <input type="text" name="city_name" id="city_name_field">
+            <label for="country_code_field"></label>
+            Country: <input type="text" name="country_code" id="country_code_field">
+            <input type="button" id="submit_button" value="Submit">
+        </fieldset>
+        <fieldset>
+            <label id="city_name_output"></label><br />
+            <label id="temperature_output"></label><br />
+            <label id="humidity_output"></label><br />
+            <label id="message_first"></label><br />
+        </fieldset>
+    </form>
+    <form>
+        <fieldset>
+            <legend>Activity 5 - Part 2 - Post Information</legend>
+            Type a word and it should return.<br />
+            <input type="text" id="new_word"/>
+            <input type="button" id="post_submit" value="Submit"><br />
+            Returned: <label id="word_submitted"></label><br />
+        </fieldset>
+    </form>
+    <script>
+        var weatherInfo;
+
+        function getWeatherInfo()
+        {
+            var cityName = document.getElementById('city_name_field').value.toLowerCase();
+            var countryCode = document.getElementById('country_code_field').value.toLowerCase();
+            var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',' + countryCode + '&APPID=4134790f78eed67e06194c8a7fafa887';
+            var req = new XMLHttpRequest();
+            req.open('GET', url, true);
+            req.addEventListener('load', function ()
+            {
+                if (req.status >= 200 && req.status < 400)
+                {
+                    weatherInfo = JSON.parse(req.responseText);
+                    document.getElementById('message_first').innerHTML = "Information Retrieved";
+
+                    // This is for converting the temp from kelvin to Fahrenheit, as well as make it a resonable decimal point.
+                    var kelvin = weatherInfo.main.temp;
+                    var actualTemp = (Math.round(10 * ((kelvin - 273.15) * (9 / 5) + 32)) / 10);
+
+                    document.getElementById('city_name_output').innerHTML = 'City Name: ' + weatherInfo.name;
+                    document.getElementById('temperature_output').innerHTML = 'Temperature: ' + actualTemp + ' Fahrenheit';
+                    document.getElementById('humidity_output').innerHTML = 'Humidity: ' + weatherInfo.main.humidity + '%';
+                }
+                else
+                {
+                    console.log("retrieving Information");
+                }
+            });
+            req.send(weatherInfo);
+        }
+
+        document.getElementById('submit_button').addEventListener('click', getWeatherInfo);
+    </script>
+    <script>
+        var getWord;
+
+        function returnWord()
+        {
+            var userWord = document.getElementById('new_word').value;
+            var purl = 'http://httpbin.org/post';
+            var req = new XMLHttpRequest();
+            req.open('POST', purl, true);
+            req.addEventListener('load', function ()
+            {
+                if (req.status >= 200 && req.status < 400)
+                {
+                    getWord = JSON.parse(req.responseText);
+                    document.getElementById('word_submitted').innerHTML = getWord.data;
+                }
+                else
+                {
+                    console.log("retrieving Information");
+                }
+            });
+            req.send(userWord);
+        }
+
+        document.getElementById('post_submit').addEventListener('click', returnWord);
+    </script>
+
+</body>
+</html>
