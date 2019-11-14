@@ -20,7 +20,7 @@ app.get('/gData',function(req,res){
   context.someData = req.query.myData;
   //res.render('getData', context);
     res.status(gData).send('Get Data Recieved');
-    res.render('home');
+    res.render('home', { context.someData });
 });
 
 
