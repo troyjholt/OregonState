@@ -18,8 +18,8 @@ app.get('/',function(req,res){
 app.get('/gData',function(req,res){
   var context = {};
   context.someData = req.query.myData;
-  //res.render('getData', context);
-    res.render('/gData');
+  res.render('getData', context);
+  //res.render('/gData');
 });
 
 
