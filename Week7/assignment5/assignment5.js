@@ -19,7 +19,7 @@ function gDShow() {
     var displaything = {};
     var list = document.getElementbyId("bigList");
     displaything.item = document.createElement("li");
-    displaything.item.appendChild(document.createTextNode(someData));
+    displaything.item.appendChild(document.createTextNode("Get Info Recieved"));
     list.appendChild(displaything.item);
     return displaything;
 }
