@@ -28,7 +28,7 @@ app.get('/',function(req,res){
   var context = {};
   context.item = req.query.myData;
   //res.render('home', displaything());
-    res.render('home');
+    res.render('home', context);
 });
 
 
