@@ -19,8 +19,7 @@ app.get('/gData',function(req,res){
   var context = {};
   context.someData = req.query.myData;
   //res.render('getData', context);
-    res.status(gData).send('Get Data Recieved');
-    res.render('home', { context.someData });
+    res.render('home');
 });
 
 
