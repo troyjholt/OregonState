@@ -15,11 +15,19 @@ app.get('/',function(req,res){
   res.render('home');
 });
 
+function gDShow() {
+    var displaything = {};
+    var list = document.getElementbyId("bigList");
+    displaything.item = document.createElement("li");
+    displaything.item.appendChild(document.createTextNode(someData));
+    list.appendChild(displaything.item);
+    return displaything;
+}
+
 app.get('/gData',function(req,res){
   var context = {};
   context.someData = req.query.myData;
-  res.render('gData', context);
-  //res.render('/gData');
+  res.render('home', displaything());
 });
 
 
