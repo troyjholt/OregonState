@@ -15,10 +15,10 @@ app.get('/',function(req,res){
   res.render('home');
 });
 
-app.get('home',function(req,res){
+app.get('/getData',function(req,res){
   var context = {};
   context.someData = req.query.myData;
-  res.render('home', context);
+  res.render('getData', context);
 });
 
 
