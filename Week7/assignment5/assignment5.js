@@ -24,9 +24,9 @@ function gDShow() {
     return displaything;
 }
 
-app.get('/gData',function(req,res){
+app.get('/',function(req,res){
   var context = {};
-  context.someData = req.query.myData;
+  context.item = req.query.myData;
   //res.render('home', displaything());
     res.render('home');
 });
