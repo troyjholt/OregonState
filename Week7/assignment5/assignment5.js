@@ -19,7 +19,7 @@ app.get('/gData',function(req,res){
   var context = {};
   context.someData = req.query.myData;
   //res.render('getData', context);
-    res.render('home');
+    res.render('/gData');
 });
 
 
