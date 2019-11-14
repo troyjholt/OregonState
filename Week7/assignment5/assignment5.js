@@ -15,7 +15,7 @@ app.get('/',function(req,res){
   res.render('home');
 });
 
-app.get('/gData',function(req,res){
+app.get('/home',function(req,res){
   var context = {};
   context.item = req.query.myData;
   //res.render('home', displaything());
