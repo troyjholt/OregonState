@@ -26,7 +26,11 @@ app.get('/gData', function(req, res) {
 
     context.item = req.query.myData;
     context.param = [];
-    context.param.push({ item })
+    for (var p in req.query)
+    {
+        context.param.push({'value': req.query[p]})
+    }
+    context.dataList = context.param;
     res.render('gData', context);
 });
 
