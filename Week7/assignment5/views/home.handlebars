@@ -18,7 +18,7 @@
                 if (req.status >= 200 && req.status < 400)
                 {
                     getInfo = JSON.parse(req.responseText);
-                    document.getElementById('listItem').innerHTML = getInfo.document.getElementById("getRequest").name;
+                    document.getElementById('listItem').innerHTML = getInfo.document.getElementById("getRequest").innerHTML;
                 }
                 else
                 {
