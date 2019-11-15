@@ -26,8 +26,7 @@ app.get('/gData', function(req, res) {
 
     context.item = req.query.myData;
     context.param = [];
-    context.param.push(context.item)
-
+    context.param.push({ item })
     res.render('gData', context);
 });
 
