@@ -21,11 +21,11 @@ app.get('/home',function(req,res){
     res.render('home', context);
 });
 
-app.get('/gData', function(req, res)){
+app.get('/gData', function(req, res) {
     var context = {};
     context.item = req.query.myData;
     res.render('gData', context);
-}
+});
 
 
 app.use(function(req,res){
