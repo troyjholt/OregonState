@@ -30,6 +30,7 @@ app.get('/gData', function(req, res) {
 app.post('/gData', function (req, res)
 {
     var context = {};
+    context.dataType = "POST";
     context.pParam = [];
     for (var p in req.body)
     {
