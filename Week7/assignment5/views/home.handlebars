@@ -9,7 +9,7 @@
 
     document.getElementById('tjtj').onclick = function getInfo()
     {
-        var info = document.getElementById("getRequest").value;
+        var info = document.getElementById("getRequest");
         var url = 'http://flip3.engr.oregonstate.edu:6329/gData';
         var req = new XMLHttpRequest();
         req.open('GET', url, true);
