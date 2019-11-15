@@ -15,8 +15,6 @@
         req.open('GET', url, true);
             req.addEventListener('load', function ()
             {
-                 getInfo = JSON.parse(req.responseText);
-                 document.getElementById('listItem').innerHTML = getInfo.document.getElementById("getRequest").name;
                 if (req.status >= 200 && req.status < 400)
                 {
                     getInfo = JSON.parse(req.responseText);
