@@ -35,7 +35,7 @@ app.post('/gData', function (req, res)
     {
         context.pParam.push({'name':p,'value':req.body[p]})
     }
-    context.dataList = pParam;
+    context.dataList = context.pParam;
     res.render('gData', context)
 });
 
