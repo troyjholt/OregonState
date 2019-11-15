@@ -23,7 +23,11 @@ app.get('/home',function(req,res){
 
 app.get('/gData', function(req, res) {
     var context = {};
+
     context.item = req.query.myData;
+    context.param = [];
+    context.param.push(context.item)
+
     res.render('gData', context);
 });
 
