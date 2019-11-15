@@ -1,3 +1,32 @@
 <h1>Home Page</h1>
+<form>
+    Name: 
+    <input type="submit" id="tjtj" value="Get Data" />
+</form>
 <ul id="bigList">Data Types Recieved</ul>
-<li>{{item}}</li>
+<li id="listItem" value="Nothing Recieved Yet"></li>
+<script>
+    var getInfo;
+
+    document.getElementById('tjtj').onclick = function getInfo()
+    {
+        var info = document.getElementById("getRequest").value;
+        var url = http://flip3.engr.oregonstate.edu:6329/gData.handlebars;
+        var req = new XMLHttpRequest();
+        req.open('GET', url, true);
+            req.addEventListener('load', function ()
+            {
+                if (req.status >= 200 && req.status < 400)
+                {
+                    getInfo = JSON.parse(req.responseText);
+                    document.getElementById('listItem').innerHTML = getInfo.getRequest;
+                }
+                else
+                {
+                    console.log("retrieving Information");
+                }
+            });
+            req.send(getInfo);
+        }
+    }
+</script>
