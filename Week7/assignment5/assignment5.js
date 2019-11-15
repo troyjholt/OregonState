@@ -15,6 +15,7 @@ app.get('/',function(req,res){
   res.render('home');
 });
 
+//Heavily referenced the code from this weeks lecture!
 app.get('/gData', function(req, res) {
     var context = {};
     context.dataType = "GET";
