@@ -15,12 +15,6 @@ app.get('/',function(req,res){
   res.render('home');
 });
 
-//app.get('/home',function(req,res){
-//  var context = {};
-//  context.item = req.query.myData;
-//    res.render('home', context);
-//});
-
 app.get('/gData', function(req, res) {
     var context = {};
     context.dataType = "GET";
@@ -33,6 +27,17 @@ app.get('/gData', function(req, res) {
     res.render('gData', context);
 });
 
+app.post('/gData', function (req, res)
+{
+    var context = {};
+    context.pParam = [];
+    for (var p in req.body)
+    {
+        context.pParam.push({'name':p,'value':req.body[p]})
+    }
+    context.dataList = pParam;
+    res.render('gData', context)
+});
 
 app.use(function(req,res){
   res.status(404);

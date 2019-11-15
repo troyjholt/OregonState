@@ -13,7 +13,9 @@
     <fieldset>
         <legend>Post Requests</legend>
         <ul>
-
+            {{#each pParam}}
+                <li>{{this.name}}: {{this.value}}</li>
+            {{/each}}
         </ul>
     </fieldset>
 </form>
