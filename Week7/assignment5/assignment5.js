@@ -15,16 +15,15 @@ app.get('/',function(req,res){
   res.render('home');
 });
 
-app.get('/home',function(req,res){
-  var context = {};
-  context.item = req.query.myData;
-    res.render('home', context);
-});
+//app.get('/home',function(req,res){
+//  var context = {};
+//  context.item = req.query.myData;
+//    res.render('home', context);
+//});
 
 app.get('/gData', function(req, res) {
     var context = {};
     context.dataType = "GET";
-    //context.item = req.query.myData;
     context.param = [];
     for (var p in req.query)
     {
