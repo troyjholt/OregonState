@@ -1,0 +1,21 @@
+<h1>{{dataType}} Request Recieved</h1>
+<form>
+    <fieldset>
+        <legend>Get Requests</legend>
+        <ul>
+            {{#each param}}
+                <li>{{this.name}}: {{this.value}}</li>
+            {{/each}}
+        </ul>
+    </fieldset>
+</form>
+<form>
+    <fieldset>
+        <legend>Post Requests</legend>
+        <ul>
+            {{#each pParam}}
+                <li>{{this.name}}: {{this.value}}</li>
+            {{/each}}
+        </ul>
+    </fieldset>
+</form>
