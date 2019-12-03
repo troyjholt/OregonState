@@ -90,7 +90,6 @@ app.post('/workouts', function (req, res)
                 next(err);
                 return;
             }
-            console.log(req.body);
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
         });
