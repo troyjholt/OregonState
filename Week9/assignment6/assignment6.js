@@ -89,14 +89,14 @@ app.get('/', function (req, res, next)
 });
 
 mysql.pool.query(
-    'CREATE TABLER IF NOT EXISTS workouts(' +
+    'CREATE TABLE IF NOT EXISTS workouts(' +
     'id INT PRIMARY KEY AUTO_INCREMENT,' +
     'name VARCHAR(255) NOT NULL,' +
     'reps INT,' +
     'weight INT,' +
     'date DATE,' +
     'lbs BOOLEAN)',
-    function (eer, result)
+    function (err, result)
     {
         if (err) throw err;
         console.log('Table created');
