@@ -1,1 +1,54 @@
-<h1>This is a test for TJ</h1>
+<h1>Assignment 6</h1>
+<h3>by TJ Holt</h3>
+<table style="border: 1px solid #dddddd;">
+    <tr>
+        <th>Name</th>
+        <th>reps</th>
+        <th>weight</th>
+        <th>date</th>
+        <th>unit</th>
+    </tr>
+    <tr>
+        <td>
+            {{param}}
+        </td>
+        <td><input type="button" value="delete" onclick="deleteRow('dataTable',this)" /></td>
+    </tr>
+</table>
+
+<form style="width:25%; margin-top:30px;">
+    <fieldset>
+        <legend>New Row</legend>
+        Name:
+        <input type="text" id="uName" required /><br />
+        Reps:
+        <input type="number" id="uReps" required/><br />
+        Weight:
+        <input type="number" id="uWeight" required/><br />
+        date:
+        <input type="date" id="uDate" required/><br />
+        unit:
+        <select id="uUnit" required>
+            <option value="true">lbs</option>
+            <option value="false">kg</option>
+        </select><br />
+        <input type="submit" onclick="dataCheck(uName, uReps, uWeight, uDate, uUnit)" />
+    </fieldset>
+</form>
+<script>
+    function dataCheck(uName, uReps, uWeight, uDate, uUnit)
+    {
+        var name = uName;
+        var reps = uReps;
+        var weight = uWeight;
+        var date = uDate;
+        var unit = uUnit;
+        var req = new XMLHttpRequest();
+        var url = 'http://flip3.engr.oregonstate.edu:6329/workouts';
+        var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: lbs });
+
+        req.open("POST", url, false)
+        req.setRequestHeader('Content-type', 'application/json');
+        req.send(payload);
+    }
+</script>
