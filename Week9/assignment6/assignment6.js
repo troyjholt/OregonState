@@ -106,15 +106,17 @@ mysql.pool.query(
 app.post('/workouts', function (req, res)
 {
     var context = {};
-    mysql.pool.query("INSERT INTO workouts (`name`) VALUES (?), (`reps`) VALUES(?), (`weight`) VALUES(?), (`date`) VALUES(?), (`lbs`) VALUES(?)"
-        , [req.query.c], function (err, result)
-    {
-        if (err)
+    mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (`?`,`?`,`?`,`?`,`?`)"
+        , [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
+
+        function (err, result)
         {
-            next(err);
-            return;
-        }
-        context.results = "Inserted id " + result.insertId;
-        res.render('home', context);
-    });
+            if (err)
+            {
+                next(err);
+                return;
+            }
+            context.results = "Inserted id " + result.insertId;
+            res.render('home', context);
+        });
 });
