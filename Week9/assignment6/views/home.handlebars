@@ -29,8 +29,8 @@
         <input type="date" id="uDate" required/><br />
         unit:
         <select id="uUnit" required>
-            <option value="1">lbs</option>
-            <option value="0">kg</option>
+            <option [ngValue]="true">lbs</option>
+            <option [ngValue]="false">kg</option>
         </select><br />
         <input type="submit" onclick="dataCheck(uName, uReps, uWeight, uDate, uUnit)" />
     </fieldset>
@@ -42,18 +42,10 @@
         var reps = uReps;
         var weight = uWeight;
         var date = uDate;
-        if (uUnit == 1)
-        {
-            var unit = true;
-        }
-        else
-        {
-            var unit = false;
-        }
         var unit = uUnit;
         var req = new XMLHttpRequest();
         var url = 'http://flip3.engr.oregonstate.edu:6329/workouts';
-        var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: lbs });
+        var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
 
         req.open("POST", url, false)
         req.setRequestHeader('Content-type', 'application/json');
