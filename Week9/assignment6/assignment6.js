@@ -106,7 +106,7 @@ mysql.pool.query(
 app.post('/workouts', function (req, res)
 {
     var context = {};
-    mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (`?`,`?`,`?`,`?`,`?`)"
+    mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)";
         , [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
         function (err, result)
