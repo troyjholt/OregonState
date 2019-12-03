@@ -120,3 +120,8 @@ app.post('/workouts', function (req, res)
             res.render('home', context);
         });
 });
+
+app.get('/workouts', function (req, res)
+{
+    res.render('home');
+});
