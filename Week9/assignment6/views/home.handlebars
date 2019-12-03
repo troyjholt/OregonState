@@ -12,7 +12,7 @@
         <td>
             {{param}}
         </td>
-        <td><input type="button" value="delete" onclick="deleteRow('dataTable',this)" /></td>
+        <!--<td><input type="button" value="delete" onclick="deleteRow('dataTable',this)" /></td-->
     </tr>
 </table>
 
@@ -29,8 +29,8 @@
         <input type="date" id="uDate" required/><br />
         unit:
         <select id="uUnit" required>
-            <option value="true">lbs</option>
-            <option value="false">kg</option>
+            <option value="1">lbs</option>
+            <option value="0">kg</option>
         </select><br />
         <input type="submit" onclick="dataCheck(uName, uReps, uWeight, uDate, uUnit)" />
     </fieldset>
@@ -42,6 +42,14 @@
         var reps = uReps;
         var weight = uWeight;
         var date = uDate;
+        if (uUnit == 1)
+        {
+            var unit = true;
+        }
+        else
+        {
+            var unit = false;
+        }
         var unit = uUnit;
         var req = new XMLHttpRequest();
         var url = 'http://flip3.engr.oregonstate.edu:6329/workouts';
