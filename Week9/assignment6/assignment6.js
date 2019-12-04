@@ -22,11 +22,11 @@ app.set('port', 6329);
 
 
 
-app.get('/', function (req, res, next)
+/*app.get('/', function (req, res, next)
 {
     var context = {};
     res.render('home', context);
-});
+});*/
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
@@ -55,9 +55,13 @@ app.listen(app.get('port'), function(){
     })
 });*/
 
-
-
 app.get('/insert', function (req, res, next)
+{
+    var context = {};
+    res.render('home', context);
+});
+
+/*app.get('/insert', function (req, res, next)
 {
     var context = {};
     context.requestType = "GET";
@@ -75,7 +79,7 @@ app.get('/insert', function (req, res, next)
 
     });
     res.render('home', context);
-});
+});*/
 
 app.post('/insert', function (req, res, next)
 {
