@@ -72,7 +72,7 @@ pool.query(
 app.get('/insert', function (req, res, next)
 {
     var context = {};
-    context.dataType = "GET";
+    context.requestType = "GET";
     context.param = [];
     mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields)
     {
