@@ -77,7 +77,7 @@ pool.query(
     }
 );
 
-app.post('/workouts', function (req, res, next)
+app.get('/insert', function (req, res, next)
 {
     var context = {};
     mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
@@ -93,9 +93,4 @@ app.post('/workouts', function (req, res, next)
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
         });
-});
-
-app.get('/workouts', function (req, res, next)
-{
-    res.render('home');
 });
