@@ -20,9 +20,9 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
-/*app.get('/',function(req,res){
+app.get('/',function(req,res){
   res.render('home');
-});*/
+});
 
 app.use(function(req,res){
   res.status(404);
@@ -42,7 +42,7 @@ app.listen(app.get('port'), function(){
 
 // Code from the assignment page.
 
-app.get('/', function (req, res, next)
+app.get('/home', function (req, res, next)
 {
     var context = {};
     pool.query("DROP TABLE IF EXISTS workouts", function (err)
