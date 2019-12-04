@@ -18,14 +18,11 @@
             <option [ngValue]="false">kg</option>
         </select><br />
     </fieldset>
-    <input type="submit" id="submitBtn"/>
+    <input type="submit" onclick="dataCheck()"/>
 </form>
-
-{{param}}
 <script>
     function dataCheck()
-    {
-        // Create the url to POST the weather info in JSON format.                                      
+    {                                   
         var payload = {};
         payload.reset = false;
         payload.name = document.getElementById('uName').value.toLowerCase();
@@ -45,7 +42,7 @@
                 if (req.status >= 200 && req.status <= 400)                                            
                 {
                     //response = JSON.parse(req.responseText);                                          
-                    console.log(payload);
+                    console.log("First If");
                 }
                 else                                                                                    
                 {
@@ -53,7 +50,7 @@
                 }
             }
         );
-        req.send(JSON.stringify(payload));
+        var insertData = JSON.stringify(payload);
+        req.send(insertData);
     }
-    document.getElementById('submitBtn').addEventListener('click', dataCheck)
 </script>
