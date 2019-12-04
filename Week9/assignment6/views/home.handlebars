@@ -28,16 +28,16 @@
         // Create the url to POST the weather info in JSON format.                                      
         var payload = {};
         payload.reset = false;
-        payload.workout_name = document.getElementById('uName').value.toLowerCase();
-        payload.workout_reps = document.getElementById('uReps').value.toLowerCase();
-        payload.workout_weight = document.getElementById('uWeight').value.toLowerCase();
-        payload.workout_date = document.getElementById('uDate').value.toLowerCase();
-        payload.workout_unit = document.getElementById('uUnit').value.toLowerCase();
+        payload.name = document.getElementById('uName').value.toLowerCase();
+        payload.reps = document.getElementById('uReps').value.toLowerCase();
+        payload.weight = document.getElementById('uWeight').value.toLowerCase();
+        payload.date = document.getElementById('uDate').value.toLowerCase();
+        payload.unit = document.getElementById('uUnit').value.toLowerCase();
 
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
         var req = new XMLHttpRequest();
-        req.open('POST', url, true);
+        req.open("POST", url, true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load',
             function ()                                                                                  

@@ -29,7 +29,21 @@ app.set('port', 6329);
 });*/
 
 
-
+app.get('/', function (req, res, next)
+{
+    var context = {};
+    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields)
+    {
+        if (err)
+        {
+            next(err);
+            return;
+        }
+        context.results = JSON.stringify(rows);
+        console.log(context);
+        res.render('home', context);
+    });
+});
 // Code from the assignment page.
 
 /*app.get('/', function (req, res, next)
