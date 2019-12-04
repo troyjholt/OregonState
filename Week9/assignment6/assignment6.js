@@ -1,30 +1,29 @@
 var express = require('express');
-
-/*var mysql = require('mysql');
-var pool = mysql.createPool({
-    connectionLimit: 10,
-    host: 'classmysql.engr.oregonstate.edu',
-    user: 'cs290_holttr',
-    password: '6329',
-    database: 'cs290_holttr'
-});*/
-
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 
+var mysql = require('/dbcon.js');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
-app.get('/',function(req,res){
-  res.render('home');
+
+
+
+
+
+
+app.get('/', function (req, res, next)
+{
+    var context = {};
+    res.render('home', context);
 });
 
-app.use(function(req,res){
+app.use(function(req,res, next){
   res.status(404);
   res.render('404');
 });
@@ -62,7 +61,7 @@ app.listen(app.get('port'), function(){
     });
 */
 
-/*pool.query(
+pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
     'id INT PRIMARY KEY AUTO_INCREMENT,' +
     'name VARCHAR(255) NOT NULL,' +
@@ -75,13 +74,13 @@ app.listen(app.get('port'), function(){
         if (err) throw err;
         console.log('Table created');
     }
-);*/
+);
 
 app.get('/insert', function (req, res, next)
 {
     var context = {};
     context.dataType = "GET";
-    /*
+    
     mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
@@ -94,7 +93,7 @@ app.get('/insert', function (req, res, next)
             }
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
-        });*/
+        });
     res.render('insert', context);
 });
 
@@ -102,8 +101,8 @@ app.post('/insert', function (req, res, next)
 {
     var context = {};
     context.dataType = "POST";
-    /*
-    mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+    
+    pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
         function (err, result)
@@ -115,6 +114,6 @@ app.post('/insert', function (req, res, next)
             }
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
-        });*/
+        });
     res.render('insert', context);
 });
