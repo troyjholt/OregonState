@@ -34,7 +34,7 @@
         payload.workout_date = document.getElementById('uDate').value.toLowerCase();
         payload.workout_unit = document.getElementById('uUnit').value.toLowerCase();
 
-        var url = '';
+        var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
         var req = new XMLHttpRequest();
         req.open('POST', url, true);
