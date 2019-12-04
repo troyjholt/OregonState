@@ -28,9 +28,7 @@ app.set('port', 6329);
     res.render('home', context);
 });*/
 
-app.listen(app.get('port'), function(){
-  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
-});
+
 
 // Code from the assignment page.
 
@@ -86,7 +84,7 @@ app.post('/insert', function (req, res, next)
     var context = {};
     context.requestType = "POST";
     console.log(req.body);
-    mysql.pool.query(
+    pool.query(
         'CREATE TABLE IF NOT EXISTS workouts(' +
         'id INT PRIMARY KEY AUTO_INCREMENT,' +
         'name VARCHAR(255) NOT NULL,' +
@@ -100,7 +98,7 @@ app.post('/insert', function (req, res, next)
             console.log('Table created');
         }
     );
-    mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)",
+    pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)",
         [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
 
         function (err, result)
@@ -132,4 +130,9 @@ app.use(function (err, req, res, next)
     res.type('plain/text');
     res.status(500);
     res.render('500');
+});
+
+app.listen(app.get('port'), function ()
+{
+    console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

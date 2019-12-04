@@ -25,39 +25,34 @@
 <script>
     function dataCheck()
     {
+        // Create the url to POST the weather info in JSON format.                                      
         var payload = {};
         payload.reset = false;
-        /*payload.name = document.getElementById("uName").value;
-        payload.reps = document.getElementById("uReps").value;
-        payload.weight = document.getElementById("uWeight").value;
-        payload.date = document.getElementById("uDate").value;
-        payload.unit = document.getElementById("uUnit").value;*/
-        var name = document.getElementById("uName").value;
-        var reps = document.getElementById("uReps").value;
-        var weight = document.getElementById("uWeight").value;
-        var date = document.getElementById("uDate").value;
-        var unit = document.getElementById("uUnit").value;
+        payload.workout_name = document.getElementById('uName').value.toLowerCase();
+        payload.workout_reps = document.getElementById('uReps').value.toLowerCase();
+        payload.workout_weight = document.getElementById('uWeight').value.toLowerCase();
+        payload.workout_date = document.getElementById('uDate').value.toLowerCase();
+        payload.workout_unit = document.getElementById('uUnit').value.toLowerCase();
 
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
-        var req = new XMLHttpRequest();
-        payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
-        console.log(payload);
 
-        req.open("POST", url, true)
+        var req = new XMLHttpRequest();
+        req.open('POST', url, true);
         req.setRequestHeader('Content-Type', 'application/json');
-        req.addEventListener('load', function ()
-        {
-            if (req.status >= 200 && req.status <= 400)
+        req.addEventListener('load',
+            function ()                                                                                  
             {
-                payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
+                if (req.status >= 200 && req.status <= 400)                                            
+                {
+                    //response = JSON.parse(req.responseText);                                          
+                    window.location.href = "/workout";
+                }
+                else                                                                                    
+                {
+                    console.log('Error in network request: ' + req.statusText);
+                }
             }
-            else
-            {
-                console.log("error in the network request: " + req.statusText);
-            }
-        });
-        req.send(payload);
-        console.log("it might have sent");
-        event.preventDefault();
+        );
+        req.send(JSON.stringify(payload));
     }
 </script>
