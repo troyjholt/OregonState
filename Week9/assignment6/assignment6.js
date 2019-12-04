@@ -20,9 +20,9 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
-/*app.get('/',function(req,res){
+app.get('/',function(req,res){
   res.render('home');
-});*/
+});
 
 app.use(function(req,res){
   res.status(404);
@@ -99,4 +99,4 @@ app.get('/insert', function (req, res, next)
 app.post('/insert', function (req, res, next)
 {
 
-}
+});
