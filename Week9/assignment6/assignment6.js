@@ -84,6 +84,7 @@ app.post('/insert', function (req, res, next)
     var context = {};
     context.requestType = "POST";
     console.log(req.body);
+    console.log("This is kinda working");
     //pool.query(
     //    'CREATE TABLE IF NOT EXISTS workouts(' +
     //    'id INT PRIMARY KEY AUTO_INCREMENT,' +
