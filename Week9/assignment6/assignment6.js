@@ -39,6 +39,7 @@ app.get('/', function (req, res, next)
     var context = {};
     pool.query("DROP TABLE IF EXISTS workouts", function (err)
     { //replace your connection pool with the your variable containing the connection pool
+        console.log("Table is being dropped");
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
             "name VARCHAR(255) NOT NULL," +
