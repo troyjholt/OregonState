@@ -38,6 +38,17 @@
 
         req.open("POST", url, true)
         req.setRequestHeader('Content-type', 'application/json');
+        req.addEventListener('load', function ()
+        {
+            if (req.status >= 200 && req.status <= 400)
+            {
+                res.render('home', context);
+            }
+            else
+            {
+                console.log("error in the network request: " + req.statusText);
+            }
+        });
         req.send(payload);
     }
 </script>
