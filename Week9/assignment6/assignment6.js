@@ -62,7 +62,7 @@ app.get('/', function (req, res, next)
 });
 
 
-pool.query(
+mysql.pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
     'id INT PRIMARY KEY AUTO_INCREMENT,' +
     'name VARCHAR(255) NOT NULL,' +
