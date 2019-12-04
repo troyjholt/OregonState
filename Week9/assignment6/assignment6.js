@@ -112,6 +112,8 @@ app.post('/insert', function (req, res, next)
             }
             console.log("Post worked maybe");
             context.results = "Inserted id " + result.insertId;
+            context.inserted = result.insertID
+            res.send(JSON.stringify(context));
             res.render('home', context);
         });
     res.render('home', context);
