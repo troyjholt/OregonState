@@ -37,7 +37,7 @@ app.get('/', function (req, res, next)
     { //replace your connection pool with the your variable containing the connection pool
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
-            "name VARCHAR(255) NOT NULL," +
+            "name VARCHAR(255) NULL," +
             "reps INT," +
             "weight INT," +
             "date DATE," +
@@ -53,7 +53,7 @@ app.get('/', function (req, res, next)
 mysql.pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
     'id INT PRIMARY KEY AUTO_INCREMENT,' +
-    'name VARCHAR(255) NOT NULL,' +
+    'name VARCHAR(255) NULL,' +
     'reps INT,' +
     'weight INT,' +
     'date DATE,' +
