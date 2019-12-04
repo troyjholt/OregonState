@@ -97,5 +97,5 @@ app.post('/workouts', function (req, res)
 
 app.get('/workouts', function (req, res)
 {
-    res.render('home');
+    res.render('/home');
 });
