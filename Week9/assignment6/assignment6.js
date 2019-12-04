@@ -91,8 +91,8 @@ app.get('/insert', function (req, res, next)
 app.post('/insert', function (req, res, next)
 {
     var context = {};
-    context.dataType = "POST";
-    
+    context.requestType = "POST";
+    console.log(req.body);
     pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
@@ -117,6 +117,7 @@ app.use(function (req, res, next)
 });
 
 app.use(function (err, req, res, next)
+{
 {
     console.error(err.stack);
     res.type('plain/text');
