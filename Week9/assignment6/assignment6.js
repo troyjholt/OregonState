@@ -1,13 +1,13 @@
 var express = require('express');
 
-var mysql = require('mysql');
+/*var mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit: 10,
     host: 'classmysql.engr.oregonstate.edu',
     user: 'cs290_holttr',
     password: '6329',
     database: 'cs290_holttr'
-});
+});*/
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -45,7 +45,7 @@ app.listen(app.get('port'), function(){
 app.get('/', function (req, res, next)
 {
     var context = {};
-    pool.query("DROP TABLE IF EXISTS workouts", function (err)
+   /* pool.query("DROP TABLE IF EXISTS workouts", function (err)
     { //replace your connection pool with the your variable containing the connection pool
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -59,10 +59,10 @@ app.get('/', function (req, res, next)
             context.results = "Table reset";
             res.render('home', context);
         })
-    });
+    });*/
 });
 
-pool.query(
+/*pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
     'id INT PRIMARY KEY AUTO_INCREMENT,' +
     'name VARCHAR(255) NOT NULL,' +
@@ -75,12 +75,12 @@ pool.query(
         if (err) throw err;
         console.log('Table created');
     }
-);
+);*/
 
 app.get('/insert', function (req, res, next)
 {
     var context = {};
-    mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+    /*mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
         function (err, result)
@@ -92,5 +92,5 @@ app.get('/insert', function (req, res, next)
             }
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
-        });
+        });*/
 });
