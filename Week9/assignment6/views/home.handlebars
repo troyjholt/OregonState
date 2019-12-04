@@ -33,7 +33,7 @@
         var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
         console.log(payload);
 
-        req.open("GET", url, true)
+        req.open("POST", url, true)
         req.setRequestHeader('Content-type', 'application/json');
         req.send(payload);
     }

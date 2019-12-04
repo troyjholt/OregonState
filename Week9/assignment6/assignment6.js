@@ -20,9 +20,9 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
-app.get('/',function(req,res){
+/*app.get('/',function(req,res){
   res.render('home');
-});
+});*/
 
 app.use(function(req,res){
   res.status(404);
@@ -42,10 +42,10 @@ app.listen(app.get('port'), function(){
 
 // Code from the assignment page.
 
-app.get('/', function (req, res, next)
+/*app.get('/', function (req, res, next)
 {
     var context = {};
-   /* pool.query("DROP TABLE IF EXISTS workouts", function (err)
+    pool.query("DROP TABLE IF EXISTS workouts", function (err)
     { //replace your connection pool with the your variable containing the connection pool
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -59,8 +59,8 @@ app.get('/', function (req, res, next)
             context.results = "Table reset";
             res.render('home', context);
         })
-    });*/
-});
+    });
+*/
 
 /*pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
@@ -79,8 +79,8 @@ app.get('/', function (req, res, next)
 
 app.get('/insert', function (req, res, next)
 {
-    var context = {};
-    /*mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+    /*var context = {};
+    mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
         function (err, result)
@@ -95,3 +95,8 @@ app.get('/insert', function (req, res, next)
         });*/
     res.render('home');
 });
+
+app.post('/insert', function (req, res, next)
+{
+
+}
