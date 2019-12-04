@@ -79,7 +79,9 @@ app.listen(app.get('port'), function(){
 
 app.get('/insert', function (req, res, next)
 {
-    /*var context = {};
+    var context = {};
+    context.dataType = "GET";
+    /*
     mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
 
@@ -93,5 +95,5 @@ app.get('/insert', function (req, res, next)
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
         });*/
-    res.render('insert');
+    res.render('insert', context);
 });
