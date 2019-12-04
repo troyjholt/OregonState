@@ -84,36 +84,36 @@ app.post('/insert', function (req, res, next)
     var context = {};
     context.requestType = "POST";
     console.log(req.body);
-    pool.query(
-        'CREATE TABLE IF NOT EXISTS workouts(' +
-        'id INT PRIMARY KEY AUTO_INCREMENT,' +
-        'name VARCHAR(255) NOT NULL,' +
-        'reps INT,' +
-        'weight INT,' +
-        'date DATE,' +
-        'lbs BOOLEAN)',
-        function (err, result)
-        {
-            if (err) throw err;
-            console.log('Table created');
-        }
-    );
-    pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)",
-        [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
+    //pool.query(
+    //    'CREATE TABLE IF NOT EXISTS workouts(' +
+    //    'id INT PRIMARY KEY AUTO_INCREMENT,' +
+    //    'name VARCHAR(255) NOT NULL,' +
+    //    'reps INT,' +
+    //    'weight INT,' +
+    //    'date DATE,' +
+    //    'lbs BOOLEAN)',
+    //    function (err, result)
+    //    {
+    //        if (err) throw err;
+    //        console.log('Table created');
+    //    }
+    //);
+    //pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)",
+    //    [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
 
-        function (err, result)
-        {
-            if (err)
-            {
-                next(err);
-                return;
-            }
-            console.log("Post worked maybe");
-            context.results = "Inserted id " + result.insertId;
-            context.inserted = result.insertID
-            res.send(JSON.stringify(context));
-            res.render('home', context);
-        });
+    //    function (err, result)
+    //    {
+    //        if (err)
+    //        {
+    //            next(err);
+    //            return;
+    //        }
+    //        console.log("Post worked maybe");
+    //        context.results = "Inserted id " + result.insertId;
+    //        context.inserted = result.insertID
+    //        res.send(JSON.stringify(context));
+    //        res.render('home', context);
+    //    });
     res.render('home', context);
 });
 
