@@ -18,16 +18,16 @@
             <option [ngValue]="false">kg</option>
         </select><br />
     </fieldset>
-    <input type="submit" onclick="dataCheck(uName, uReps, uWeight, uDate, uUnit)" />
+    <input type="submit" onclick="dataCheck()" />
 </form>
 <script>
-    function dataCheck(uName, uReps, uWeight, uDate, uUnit)
+    function dataCheck()
     {
-        var name = uName;
-        var reps = uReps;
-        var weight = uWeight;
-        var date = uDate;
-        var unit = uUnit;
+        var name = document.getElementById("uName").value;
+        var reps = document.getElementById("uReps").value;
+        var weight = document.getElementById("uWeight").value;
+        var date = document.getElementById("uDate").value;
+        var unit = document.getElementById("uUnit").value;
         var req = new XMLHttpRequest();
         var url = 'http://flip3.engr.oregonstate.edu:6329/workouts';
         var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
