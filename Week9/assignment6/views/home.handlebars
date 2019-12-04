@@ -42,7 +42,7 @@
         {
             if (req.status >= 200 && req.status <= 400)
             {
-                res.render('home', context);
+                payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
             }
             else
             {
