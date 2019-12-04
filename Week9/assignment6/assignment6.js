@@ -95,7 +95,7 @@ app.post('/insert', function (req, res, next)
     context.requestType = "POST";
     console.log(req.body);
     pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
-         [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
+         [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
 
         function (err, result)
         {
