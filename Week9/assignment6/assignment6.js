@@ -58,7 +58,8 @@ app.get('/', function (req, res, next)
             context.results = "Table reset";
             res.render('home', context);
         })
-    });
+    })
+});
 
 
 pool.query(
