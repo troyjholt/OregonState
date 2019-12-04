@@ -23,17 +23,6 @@ app.get('/', function (req, res, next)
     res.render('home', context);
 });
 
-app.use(function(req, res, next){
-  res.status(404);
-  res.render('404');
-});
-
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.type('plain/text');
-  res.status(500);
-  res.render('500');
-});
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
@@ -60,7 +49,6 @@ app.get('/', function (req, res, next)
         })
     })
 });
-
 
 mysql.pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
@@ -117,4 +105,18 @@ app.post('/insert', function (req, res, next)
             res.render('home', context);
         });
     res.render('insert', context);
+});
+
+app.use(function (req, res, next)
+{
+    res.status(404);
+    res.render('404');
+});
+
+app.use(function (err, req, res, next)
+{
+    console.error(err.stack);
+    res.type('plain/text');
+    res.status(500);
+    res.render('500');
 });
