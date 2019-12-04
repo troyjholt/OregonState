@@ -23,7 +23,7 @@ app.get('/', function (req, res, next)
     res.render('home', context);
 });
 
-app.use(function(req,res, next){
+app.use(function(req, res, next){
   res.status(404);
   res.render('404');
 });
@@ -41,7 +41,7 @@ app.listen(app.get('port'), function(){
 
 // Code from the assignment page.
 
-/*app.get('/', function (req, res, next)
+app.get('/', function (req, res, next)
 {
     var context = {};
     pool.query("DROP TABLE IF EXISTS workouts", function (err)
@@ -59,7 +59,7 @@ app.listen(app.get('port'), function(){
             res.render('home', context);
         })
     });
-*/
+
 
 pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
