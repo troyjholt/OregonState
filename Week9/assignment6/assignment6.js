@@ -97,3 +97,24 @@ app.get('/insert', function (req, res, next)
         });*/
     res.render('insert', context);
 });
+
+app.post('/insert', function (req, res, next)
+{
+    var context = {};
+    context.dataType = "POST";
+    /*
+    mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+         [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
+
+        function (err, result)
+        {
+            if (err)
+            {
+                next(err);
+                return;
+            }
+            context.results = "Inserted id " + result.insertId;
+            res.render('home', context);
+        });*/
+    res.render('insert', context);
+});
