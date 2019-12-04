@@ -22,16 +22,11 @@ app.set('port', 6329);
 
 
 
-
-
-
-
 app.get('/', function (req, res, next)
 {
     var context = {};
     res.render('home', context);
 });
-
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
@@ -78,21 +73,18 @@ app.get('/insert', function (req, res, next)
 {
     var context = {};
     context.dataType = "GET";
-    
-    mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
-         [req.body['name'], req.body['reps'], req.body['weight'], req.body['date'], req.body['lbs']],
-
-        function (err, result)
+    context.param = [];
+    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields)
+    {
+        if (err)
         {
-            if (err)
-            {
-                next(err);
-                return;
-            }
-            context.results = "Inserted id " + result.insertId;
-            res.render('home', context);
-        });
-    res.render('insert', context);
+            next(err);
+            return;
+        }
+        context.dataList = context.param;
+        context.results = JSON.stringify(rows);
+        res.render('home', context);
+    });
 });
 
 app.post('/insert', function (req, res, next)
