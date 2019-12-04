@@ -34,7 +34,7 @@ app.listen(app.get('port'), function(){
 
 // Code from the assignment page.
 
-app.get('/', function (req, res, next)
+/*app.get('/', function (req, res, next)
 {
     var context = {};
     pool.query("DROP TABLE IF EXISTS workouts", function (err)
@@ -53,22 +53,9 @@ app.get('/', function (req, res, next)
             res.render('home', context);
         })
     })
-});
+});*/
 
-pool.query(
-    'CREATE TABLE IF NOT EXISTS workouts(' +
-    'id INT PRIMARY KEY AUTO_INCREMENT,' +
-    'name VARCHAR(255) NOT NULL,' +
-    'reps INT,' +
-    'weight INT,' +
-    'date DATE,' +
-    'lbs BOOLEAN)',
-    function (err, result)
-    {
-        if (err) throw err;
-        console.log('Table created');
-    }
-);
+
 
 app.get('/insert', function (req, res, next)
 {
@@ -94,6 +81,20 @@ app.post('/insert', function (req, res, next)
     var context = {};
     context.requestType = "POST";
     console.log(req.body);
+    pool.query(
+        'CREATE TABLE IF NOT EXISTS workouts(' +
+        'id INT PRIMARY KEY AUTO_INCREMENT,' +
+        'name VARCHAR(255) NOT NULL,' +
+        'reps INT,' +
+        'weight INT,' +
+        'date DATE,' +
+        'lbs BOOLEAN)',
+        function (err, result)
+        {
+            if (err) throw err;
+            console.log('Table created');
+        }
+    );
     pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
          [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
 
