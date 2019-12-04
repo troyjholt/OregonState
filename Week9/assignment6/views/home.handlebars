@@ -31,6 +31,7 @@
         var req = new XMLHttpRequest();
         var url = 'http://flip3.engr.oregonstate.edu:6329/workouts';
         var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
+        console.log(payload);
 
         req.open("POST", url, true)
         req.setRequestHeader('Content-type', 'application/json');
