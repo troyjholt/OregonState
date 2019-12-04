@@ -29,7 +29,7 @@ app.use(function(req,res){
   res.render('404');
 });
 
-app.use(function(err, req, res){
+app.use(function(err, req, res, next){
   console.error(err.stack);
   res.type('plain/text');
   res.status(500);
@@ -42,7 +42,7 @@ app.listen(app.get('port'), function(){
 
 // Code from the assignment page.
 
-app.get('/home', function (req, res)
+app.get('/', function (req, res, next)
 {
     var context = {};
     pool.query("DROP TABLE IF EXISTS workouts", function (err)
@@ -77,7 +77,7 @@ pool.query(
     }
 );
 
-app.post('/workouts', function (req, res)
+app.post('/workouts', function (req, res, next)
 {
     var context = {};
     mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
@@ -95,7 +95,7 @@ app.post('/workouts', function (req, res)
         });
 });
 
-app.get('/workouts', function (req, res)
+app.get('/workouts', function (req, res, next)
 {
     res.render('home');
 });
