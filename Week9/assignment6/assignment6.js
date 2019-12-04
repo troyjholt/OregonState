@@ -31,7 +31,7 @@ app.post('/insert', function (req, res)
     var context = {};
     context.dataType = "POST";
     
-    console.log(context);
+    console.log(context.dataType);
     res.render('home', context)
 });
 
