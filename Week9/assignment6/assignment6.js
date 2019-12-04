@@ -83,6 +83,7 @@ app.get('/insert', function (req, res, next)
         }
         context.dataList = context.param;
         context.results = JSON.stringify(rows);
+        console.log(JSON.stringify(rows));
         res.render('home', context);
     });
 });
@@ -105,7 +106,7 @@ app.post('/insert', function (req, res, next)
             context.results = "Inserted id " + result.insertId;
             res.render('home', context);
         });
-    res.render('insert', context);
+    res.render('home', context);
 });
 
 app.use(function (req, res, next)
