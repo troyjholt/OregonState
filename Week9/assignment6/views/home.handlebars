@@ -23,6 +23,7 @@
 <script>
     function dataCheck()
     {
+        var payload = {};
         var name = document.getElementById("uName").value;
         var reps = document.getElementById("uReps").value;
         var weight = document.getElementById("uWeight").value;
@@ -30,7 +31,7 @@
         var unit = document.getElementById("uUnit").value;
         var req = new XMLHttpRequest();
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
-        var payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
+        payload = JSON.stringify({ name: name, reps: reps, weight: weight, date: date, lbs: unit });
         console.log(payload);
 
         req.open("POST", url, true)
