@@ -3,7 +3,16 @@ var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 
-var mysql = require('./dbcon.js');
+var mysql = require('mysql');
+var pool = mysql.createPool({
+    connectionLimit: 10,
+    host: 'classmysql.engr.oregonstate.edu',
+    user: 'cs290_holttr',
+    password: '6329',
+    database: 'cs290_holttr'
+});
+
+module.exports.pool = pool;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -50,7 +59,7 @@ app.get('/', function (req, res, next)
     })
 });
 
-mysql.pool.query(
+pool.query(
     'CREATE TABLE IF NOT EXISTS workouts(' +
     'id INT PRIMARY KEY AUTO_INCREMENT,' +
     'name VARCHAR(255) NULL,' +
