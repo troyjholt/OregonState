@@ -100,7 +100,7 @@ app.post('/insert', function (req, res, next)
             console.log('Table created');
         }
     );
-    pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+    pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)",
         [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
 
         function (err, result)
