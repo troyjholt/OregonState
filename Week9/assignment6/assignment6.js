@@ -72,8 +72,9 @@ app.get('/insert', function (req, res, next)
         context.dataList = context.param;
         context.results = JSON.stringify(rows);
         console.log(context.results);
-        res.render('home', context);
+
     });
+    res.render('home', context);
 });
 
 app.post('/insert', function (req, res, next)
