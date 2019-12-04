@@ -111,6 +111,22 @@ app.post('/insert', function (req, res, next)
     res.render('home', context);
 });
 
+app.get('/', function (req, res, next)
+{
+    var context = {};
+    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields)
+    {
+        if (err)
+        {
+            next(err);
+            return;
+        }
+        context.results = JSON.stringify(rows);
+        console.log("it might have worked?");
+        res.render('home', context);
+    });
+});
+
 app.use(function (req, res, next)
 {
     res.status(404);
