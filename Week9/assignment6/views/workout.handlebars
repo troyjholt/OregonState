@@ -1,0 +1,129 @@
+<h1>Workouts</h1>
+
+<fieldset class="form_content">
+    <legend>Workout Tracker</legend>
+    <form action="" method="">
+        <div class="text_input_content">
+            Workout Name:
+            <input id='name_field' type="text" name="workout_name"></input>
+        </div>
+        <div class="text_input_content">
+            Reps:
+            <input id='reps_field' type="text" name="workout_reps"></input>
+        </div>
+        <div class="text_input_content">
+            Weight (lbs):
+            <input id='weight_field' type="text" name="workout_weight"></input>
+        </div>
+        <div class="text_input_content">
+            Date:
+            <input id='date_field' type="text" name="workout_date"></input>
+        </div>
+        <div class="text_input_content">
+            Unit (lbs or kg):
+            <input id='unit_field' type="text" name="workout_unit"></input>
+        </div>
+        <div>
+            <input id="submit_post" type="button" value="Submit Workout"></input>
+        </div>
+    </form>
+</fieldset>
+
+<fieldset class="form_content">
+    <legend>Table Reset</legend>
+    <form action="" method="">
+        <div>
+            <input id="submit_reset" type="button" value="Submit Reset"></input>
+        </div>
+    </form>
+</fieldset>
+
+<fieldset class="form_content">
+    <legend>Table Display</legend>
+    <form action="" method="">
+        <div>
+            <table>
+                <tbody>
+                    {{#each workout_data}}
+                    <tr>
+                        <td>{{this.workout_name}}</td>
+                        <td>{{this.workout_reps}}</td>
+                        <td>{{this.workout_weight}}</td>
+                        <td>{{this.workout_date}}</td>
+                        <td>{{this.workout_unit}}</td>
+                        <td>
+                            <input id="remove_row" type="button" value="Remove"></input>
+                            <input id="edit_row" type="button" value="Edit"></input>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </form>
+</fieldset>
+
+<script>
+function submitPost()
+{
+    var payload = {};
+    payload.reset = false;
+    payload.workout_name = document.getElementById('name_field').value.toLowerCase();
+    payload.workout_reps = document.getElementById('reps_field').value.toLowerCase();
+    payload.workout_weight = document.getElementById('weight_field').value.toLowerCase();
+    payload.workout_date = document.getElementById('date_field').value.toLowerCase();
+    payload.workout_unit = document.getElementById('unit_field').value.toLowerCase();
+
+    var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
+
+    var req = new XMLHttpRequest();
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load',
+        function()
+        {
+            if (req.status >= 200 && req.status <= 400)
+            {
+                //response = JSON.parse(req.responseText);
+                window.location.href = "/workout";
+            }
+            else
+            {
+                console.log('Error in network request: ' + req.statusText);
+            }
+        }
+    );
+    req.send(JSON.stringify(payload));
+}
+
+function submitReset()
+{
+    // Create the url to POST the weather info in JSON format.
+    var payload = {};
+    payload.reset = true;
+
+    var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
+
+    var req = new XMLHttpRequest();
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load',
+        function()
+        {
+            if (req.status >= 200 && req.status <= 400)
+            {
+                //response = JSON.parse(req.responseText);
+                window.location.href = "/workout";
+            }
+            else
+            {
+                console.log('Error in network request: ' + req.statusText);
+            }
+        }
+    );
+    req.send(JSON.stringify(payload));
+}
+
+document.getElementById('submit_post').addEventListener('click', submitPost);
+document.getElementById('submit_reset').addEventListener('click', submitReset);
+</script>

@@ -22,7 +22,7 @@ app.set('port', 6329);
 
 app.get('/', function (req, res, next)
 {
-    res.render('home');
+    res.render('workout');
 });
 
 app.post('/insert', function (req, res, next)
@@ -35,7 +35,7 @@ app.post('/insert', function (req, res, next)
 app.get('/insert', function (req, res, next)
 {
     response.end();
-    res.render('home');
+    res.render('workout');
 });
 
 app.use(function (req, res, next)
