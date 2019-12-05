@@ -75,15 +75,13 @@ app.get('/insert', function (req, res, next)
             next(err);
             return;
         }
-        context.workout_data.push(
-            {
-                'workout_name': workout.name,
-                'workout_reps': workout.reps,
-                'workout_weight': workout.weight,
-                'workout_date': workout.date,
-                'workout_unit': 'lbs'
-            });
+        context.name = workouts.name;
+        context.reps = workouts.reps;
+        context.weight = workouts.weight;
+        context.date = workouts.date;
+        context.unit = workouts.lbs;
 
+        res.send(context);
     });
     console.log('executing get');
     res.render('workout');
