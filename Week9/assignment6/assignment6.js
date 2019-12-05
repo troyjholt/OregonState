@@ -31,6 +31,7 @@ app.post('/insert', function (req, res)
     var context = {};
 
     res.type('plain/text');
+    res.status(200);
     res.send("Look right here you little bitch");
     return "hello There";
 });
