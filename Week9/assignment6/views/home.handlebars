@@ -3,12 +3,14 @@
 
 <input type="submit" id="uSubmit" />
 <span id="testThis">This is what should load up on first load</span>
+
+
 <script>
     document.addEventListener('load', dataCheck);
 
     function dataCheck()
     {
-        document.getElementById('uSubmit').addEventListener('click', function (event)
+        document.getElementById('uSubmit').addEventListener("click", function (event)
         {
             console.log("function Started");
             var req = new XMLHttpRequest();
@@ -18,8 +20,6 @@
             req.setRequestHeader('Content-Type', 'application/json');
             req.send(null);
             console.log(req.responseText);
-        })
-
+        });
     }
-
 </script>
