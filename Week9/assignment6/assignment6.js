@@ -23,7 +23,7 @@ app.set('port', 6329);
 
 app.get('/', function (req, res)
 {
-    res.render('home');
+    res.render('home', context);
 });
 
 app.post('/insert', function (req, res)
