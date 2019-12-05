@@ -84,7 +84,7 @@ app.get('/insert', function (req, res, next)
         res.send(context);
     });
     console.log('executing get');
-    res.render('workout');
+    res.render('workout', context);
 });
 
 
