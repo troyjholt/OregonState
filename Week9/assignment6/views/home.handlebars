@@ -27,12 +27,7 @@
         console.log("function Started");
         var payload = {};
         payload.stupidVar = "hello";
-        //payload.reset = false;
-        //payload.name = document.getElementById('uName').value.toLowerCase();
-        //payload.reps = document.getElementById('uReps').value.toLowerCase();
-        //payload.weight = document.getElementById('uWeight').value.toLowerCase();
-        //payload.date = document.getElementById('uDate').value.toLowerCase();
-        //payload.unit = document.getElementById('uUnit').value.toLowerCase();
+
 
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
@@ -45,7 +40,6 @@
                 if (req.status >= 200 && req.status <= 400)                                            
                 {                                      
                     console.log("First If");
-                    req.send(payload);
                 }
                 else                                                                                    
                 {
