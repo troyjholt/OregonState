@@ -113,9 +113,9 @@
                     //window.location.href = "/workout";
                     tableInfo = req.responseText;
                     console.log(tableInfo);
-                    var tData = JSON.parse(tableInfo).name;
+                    var tData = JSON.parse(tableInfo);
                     console.log("test 1 " + tData);
-                    var test2 = tData;
+                    var test2 = tData[0].name;
                     console.log("test 2 " + test2);
                     var name = tData;
                     console.log(name);
