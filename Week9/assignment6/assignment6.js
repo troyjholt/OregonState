@@ -68,7 +68,7 @@ app.post('/insert', function (req, res, next)
 app.get('/insert', function (req, res, next)
 {
     var context = {};
-    pool.query('SELECT * FROM workouts', function (err, rows, fields)
+    pool.query('SELECT * FROM workouts WHERE id=1', function (err, rows, fields)
     {
         if (err)
         {
@@ -81,6 +81,25 @@ app.get('/insert', function (req, res, next)
     });
     console.log('executing get');
 });
+
+
+//app.post('/reset', function (req, res, next)
+//{
+//    var context = {};
+//    mysql.pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
+//        [req.query.name, req.query.done, req.query.due, req.query.id],
+//        function (err, result)
+//        {
+//            if (err)
+//            {
+//                next(err);
+//                return;
+//            }
+//            context.results = "Updated " + result.changedRows + " rows.";
+//            res.render('home', context);
+//        });
+//});
+
 
 app.use(function (req, res, next)
 {
