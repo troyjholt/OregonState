@@ -30,15 +30,16 @@
 
 
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
-
+        console.log(url);
         var req = new XMLHttpRequest();
+        console.log(req);
         req.open("POST", url, true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load',
             function ()                                                                                  
             {
                 if (req.status >= 200 && req.status <= 400)                                            
-                {                                      
+                {
                     console.log("First If");
                 }
                 else                                                                                    
@@ -47,7 +48,9 @@
                 }
             }
         );
+
         payload = JSON.stringify(payload);
+                console.log("about to send" + payload);
         req.send(payload);
     }
 </script>
