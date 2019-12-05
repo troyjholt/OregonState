@@ -111,10 +111,10 @@
 
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
-                    tableInfo = req.responseText;
+                    tableInfo = req.responseText['results'];
                     var tData = JSON.parse(tableInfo).results;
                     console.log("test 1 " + tData.name);
-                    console.log(req.responseText);
+                    console.log(tableInfo);
                     var name = tData.name;
                     console.log(name);
                     var reps = tableInfo.reps;
