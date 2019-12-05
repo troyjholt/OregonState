@@ -110,26 +110,25 @@
                 {
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
-                    console.log(req.responseText);
                     tableInfo = JSON.parse(req.responseText);
                     function addRow(tableID)
                     {
                         let workoutTable = document.getElementById(tableID);
                         let newRow = workoutTable.insertRow(-1);
                         let newCell = newRow.insertCell(0);
-                        let newText = document.createTextNode(tableInfo.name);
+                        let newText = document.createTextNode(tableInfo.name.value);
                         newCell.appendChild(newText);
                         let newCell2 = newRow.insertCell(1);
-                        newText = document.createTextNode(tableInfo.reps);
+                        newText = document.createTextNode(tableInfo.reps.value);
                         newCell2.appendChild(newText);
                         let newCell3 = newRow.insertCell(2);
-                        newText = document.createTextNode(tableInfo.weight);
+                        newText = document.createTextNode(tableInfo.weight.value);
                         newCell3.appendChild(newText);
                         let newCell4 = newRow.insertCell(3);
-                        newText = document.createTextNode(tableInfo.date);
+                        newText = document.createTextNode(tableInfo.date.value);
                         newCell4.appendChild(newText);
                         let newCell5 = newRow.insertCell(4);
-                        newText = document.createTextNode(tableInfo.unit);
+                        newText = document.createTextNode(tableInfo.unit.value);
                         newCell5.appendChild(newText);
                     }
 
