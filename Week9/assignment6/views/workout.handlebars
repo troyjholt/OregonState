@@ -111,7 +111,7 @@
 
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
-                    tableInfo = req.workouts;
+                    tableInfo = req.responseText;
                     console.log(req.responseText);
                     var name = tableInfo.name;
                     var reps = tableInfo.workouts.reps;
@@ -147,7 +147,7 @@
                 }
             }
         );
-        req.send(tableInfo);
+        req.send();
     }
 
     function submitReset()
