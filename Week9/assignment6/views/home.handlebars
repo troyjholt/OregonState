@@ -2,7 +2,7 @@
 <h3>by TJ Holt</h3>
 
 <form style="width:25%; margin-top:30px;">
-    <fieldset>
+    <!--<fieldset>
         <legend>New Row</legend>
         Name:
         <input type="text" id="uName" required /><br />
@@ -17,13 +17,14 @@
             <option [ngValue]="true">lbs</option>
             <option [ngValue]="false">kg</option>
         </select><br />
-    </fieldset>
+    </fieldset>-->
     <input type="submit" onclick="dataCheck()"/>
 </form>
 <h3>{{dataType}}</h3>
 <script>
     function dataCheck()
-    {                                   
+    {           
+        console.log("function Started");
         var payload = {};
         payload.stupidVar = "hello";
         //payload.reset = false;
