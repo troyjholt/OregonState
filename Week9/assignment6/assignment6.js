@@ -32,6 +32,7 @@ app.post('/', function (req, res, next)
     context.dataType = "It is Posting";
 
     res.send("Look right here you little bitch");
+    return context.dataType;
    // res.render('home', context)
 });
 
