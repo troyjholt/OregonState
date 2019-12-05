@@ -18,24 +18,30 @@
             <option [ngValue]="false">kg</option>
         </select><br />
     </fieldset>-->
-    <input type="submit" onclick="dataCheck()"/>
+    <input type="submit" id="uSubmit"/>
 </form>
 <h3>{{dataType}}</h3>
 <script>
+    document.addEventListener('DOMContentLoaded', dataCheck);
+
     function dataCheck()
-    {           
-        console.log("function Started");
-        var payload = {};
-        payload.stupidVar = "hello";
+    {
+        document.getElementById('uSubmit').addEventListener('click', function (event)
+        {
+            console.log("function Started");
+            var req = new XMLHttpRequest();
+            var payload = {};
+            payload.stupidVar = "hello";
 
 
-        var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
-        console.log(url);
-        var req = new XMLHttpRequest();
-        console.log(req);
-        req.open("POST", url, false);
-        req.setRequestHeader('Content-Type', 'application/json');
-        payload = JSON.stringify(payload);
-        req.send(payload);
+            var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
+
+            req.open("POST", url, false);
+            req.setRequestHeader('Content-Type', 'application/json');
+            payload = JSON.stringify(payload);
+            req.send(payload);
+            event.preventDefault();
+        })
     }
+
 </script>
