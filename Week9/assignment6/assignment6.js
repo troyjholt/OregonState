@@ -26,14 +26,11 @@ app.get('/', function (req, res, next)
     res.render('home');
 });
 
-app.post('/', function (req, res, next)
+app.post('/insert', function (req, res)
 {
     var context = {};
-    context.dataType = "It is Posting";
 
     res.send("Look right here you little bitch");
-    return context.dataType;
-   // res.render('home', context)
 });
 
 app.use(function (req, res, next)
