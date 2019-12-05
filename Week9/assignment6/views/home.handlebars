@@ -35,22 +35,7 @@
         console.log(req);
         req.open("POST", url, true);
         req.setRequestHeader('Content-Type', 'application/json');
-        req.addEventListener('load',
-            function ()                                                                                  
-            {
-                if (req.status >= 200 && req.status <= 400)                                            
-                {
-                    console.log("First If");
-                }
-                else                                                                                    
-                {
-                    console.log('Error in network request: ' + req.statusText);
-                }
-            }
-        );
-
-        payload = JSON.stringify(payload);
-                console.log("about to send" + payload);
-        req.send(payload);
+        req.send(JSON.stringify(payload));
+        console.log(JSON.parse(req.responseText));
     }
 </script>
