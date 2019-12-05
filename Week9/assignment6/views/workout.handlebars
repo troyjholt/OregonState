@@ -96,58 +96,52 @@
         );
         req.send(JSON.stringify(payload));
         getData();
+    }
 
-        function getData()
-        {
-            var req = new XMLHttpRequest();
-            req.open('GET', url, true);
-            req.setRequestHeader('Content-Type', 'application/json');
-            req.addEventListener('load',
-                function ()
+    function getData()
+    {
+        var req = new XMLHttpRequest();
+        req.open('GET', url, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load',
+            function ()
+            {
+                if (req.status >= 200 && req.status <= 400)
                 {
-                    if (req.status >= 200 && req.status <= 400)
+                    //response = JSON.parse(req.responseText);
+                    //window.location.href = "/workout";
+                    console.log(req.responseText);
+                    tableInfo = JSON.parse(req.responseText);
+                    function addRow(tableID)
                     {
-                        //response = JSON.parse(req.responseText);
-                        //window.location.href = "/workout";
-                        console.log(req.responseText);
-                        tableInfo = JSON.parse(req.responseText);
-                        function addRow(tableID)
-                        {
-                            let workoutTable = document.getElementById(tableID);
-                            let newRow = workoutTable.insertRow(-1);
-                            let newCell = newRow.insertCell(0);
-                            let newText = document.createTextNode(tableInfo.name);
-                            newCell.appendChild(newText);
-                            let newCell2 = newRow.insertCell(1);
-                            newText = document.createTextNode(tableInfo.reps);
-                            newCell2.appendChild(newText);
-                            let newCell3 = newRow.insertCell(2);
-                            newText = document.createTextNode(tableInfo.weight);
-                            newCell3.appendChild(newText);
-                            let newCell4 = newRow.insertCell(3);
-                            newText = document.createTextNode(tableInfo.date);
-                            newCell4.appendChild(newText);
-                            let newCell5 = newRow.insertCell(4);
-                            newText = document.createTextNode(tableInfo.unit);
-                            newCell5.appendChild(newText);
-                        }
-
-                        addRow('myTable');
-
-                            //document.getElementById('wName').innerHTML = tableInfo.name;
-                            //document.getElementById('wReps').innerHTML = tableInfo.reps;
-                            //document.getElementById('wWeight').innerHTML = tableInfo.weight;
-                            //document.getElementById('wDate').innerHTML = tableInfo.date;
-                            //document.getElementById('wUnit').innerHTML = tableInfo.unit;
+                        let workoutTable = document.getElementById(tableID);
+                        let newRow = workoutTable.insertRow(-1);
+                        let newCell = newRow.insertCell(0);
+                        let newText = document.createTextNode(tableInfo.name);
+                        newCell.appendChild(newText);
+                        let newCell2 = newRow.insertCell(1);
+                        newText = document.createTextNode(tableInfo.reps);
+                        newCell2.appendChild(newText);
+                        let newCell3 = newRow.insertCell(2);
+                        newText = document.createTextNode(tableInfo.weight);
+                        newCell3.appendChild(newText);
+                        let newCell4 = newRow.insertCell(3);
+                        newText = document.createTextNode(tableInfo.date);
+                        newCell4.appendChild(newText);
+                        let newCell5 = newRow.insertCell(4);
+                        newText = document.createTextNode(tableInfo.unit);
+                        newCell5.appendChild(newText);
                     }
-                    else
-                    {
-                        console.log('Error in network request: ' + req.statusText);
-                    }
+
+                    addRow('myTable');
                 }
-            );
-            req.send(tableInfo);
-        }
+                else
+                {
+                    console.log('Error in network request: ' + req.statusText);
+                }
+            }
+        );
+        req.send(tableInfo);
     }
 
     function submitReset()
