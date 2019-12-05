@@ -113,6 +113,7 @@
                     tableInfo = JSON.parse(req.responseText);
                     function addRow(tableID)
                     {
+                        tableInfo = JSON.parse(req.responseText);
                         let workoutTable = document.getElementById(tableID);
                         let newRow = workoutTable.insertRow(-1);
                         let newCell = newRow.insertCell(0);
