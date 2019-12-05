@@ -114,7 +114,7 @@
                     tableInfo = req.responseText;
                     var tData = JSON.parse(tableInfo).results;
                     console.log("test 1 " + tData);
-                    var test2 = tData.name;
+                    var test2 = tData[1];
                     console.log("test 2 " + test2);
                     console.log(req.responseText);
                     var name = tData;
