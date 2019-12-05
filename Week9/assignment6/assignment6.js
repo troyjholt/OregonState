@@ -76,16 +76,10 @@ app.get('/insert', function (req, res, next)
             return;
         }
         context.results = JSON.stringify(rows);
-        context.results.name = workouts.name;
-        context.results.reps = workouts.reps;
-        context.results.weight = workouts.weight;
-        context.results.date = workouts.date;
-        context.results.unit = workouts.lbs;
-
-        res.send(json.stringify(context));
+        res.send(context);
+        res.render('workout');
     });
     console.log('executing get');
-    res.render('workout', context);
 });
 
 
