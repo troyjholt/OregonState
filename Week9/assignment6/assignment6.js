@@ -31,7 +31,7 @@ app.post('/insert', function (req, res)
     var context = {};
     context.dataType = "It is Posting";
     
-    console.log(context.dataType);
+    console.log(context.stupidVar);
     res.render('home', context)
 });
 
