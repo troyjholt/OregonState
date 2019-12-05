@@ -2,7 +2,7 @@
 <h3>by TJ Holt</h3>
 
 <input type="submit" id="uSubmit" />
-<h3>{{dataType}}</h3>
+<span id="testThis">This is what should load up on first load</span>
 <script>
     document.addEventListener('DOMContentLoaded', dataCheck);
 
@@ -21,6 +21,7 @@
             req.open("POST", url, true);
             req.setRequestHeader('Content-Type', 'application/json');;
             req.send(JSON.stringify(payload));
+            console.log(response);
         })
     }
 

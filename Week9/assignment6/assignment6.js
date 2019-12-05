@@ -23,15 +23,16 @@ app.set('port', 6329);
 
 app.get('/', function (req, res, next)
 {
-    res.render('/home.html');
+    res.render('home');
 });
 
 app.post('/', function (req, res, next)
 {
     var context = {};
     context.dataType = "It is Posting";
-   
-    res.render('home', context)
+
+    res.send("Look right here you little bitch");
+   // res.render('home', context)
 });
 
 app.use(function (req, res, next)
