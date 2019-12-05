@@ -75,8 +75,7 @@ app.get('/insert', function (req, res, next)
             next(err);
             return;
         }
-        context.results = JSON.stringify(rows);
-        context.name = JSON.stringify(rows).name;
+        context = JSON.stringify(rows);
         res.send(context);
         res.render('workout');
     });
