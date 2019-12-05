@@ -46,7 +46,7 @@ app.post('/insert', function (req, res, next)
             console.log('table created');
         }
     );
-    pool.query("insert into workouts (`name`, `reps`, `weight`, `date`, `lbs`) values (?, ?, ?, ?, ?)",
+    pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) values (?, ?, ?, ?, ?)",
         [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.unit],
 
         function (err, result)
@@ -76,7 +76,7 @@ app.get('/insert', function (req, res, next)
             return;
         }
         context.results = JSON.stringify(rows);
-        res.send(JSON.stringify(context));
+        res.send('Might Have Worked');
         res.render('workout');
     });
     console.log('executing get');
