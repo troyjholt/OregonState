@@ -33,9 +33,9 @@
         console.log(url);
         var req = new XMLHttpRequest();
         console.log(req);
-        req.open("POST", url, true);
+        req.open("POST", url, false);
         req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify(payload));
-        console.log(JSON.parse(req.responseText));
+        payload = JSON.stringify(payload);
+        req.send(payload);
     }
 </script>
