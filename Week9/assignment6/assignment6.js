@@ -81,7 +81,7 @@ app.get('/insert', function (req, res, next)
         context.date = workouts.date;
         context.unit = workouts.lbs;
 
-        res.send(context);
+        res.send(json.stringify(context));
     });
     console.log('executing get');
     res.render('workout', context);
