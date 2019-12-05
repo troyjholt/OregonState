@@ -20,8 +20,8 @@
 
             req.open("POST", url, true);
             req.setRequestHeader('Content-Type', 'application/json');;
-            req.send(JSON.stringify(payload));
-            console.log(req.responseText);
+            req.send(null);
+            console.log(JSON.parse(req.responseText));
         })
     }
 
