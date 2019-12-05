@@ -108,32 +108,37 @@
             {
                 if (req.status >= 200 && req.status <= 400)
                 {
+
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
                     tableInfo = JSON.parse(req.responseText);
-                    function addRow(tableID)
+                    var name = tableInfo.name.value;
+                    var reps = tableInfo.reps.value;
+                    var weight = tableInfo.weight.value;
+                    var date = tableInfo.date.value;
+                    var unit = tableInfo.unit.value;
+                    function addRow(tableID, name, reps, weight, date, unit)
                     {
-                        tableInfo = JSON.parse(req.responseText);
                         let workoutTable = document.getElementById(tableID);
                         let newRow = workoutTable.insertRow(-1);
                         let newCell = newRow.insertCell(0);
-                        let newText = document.createTextNode(tableInfo.name.value);
+                        let newText = document.createTextNode(name);
                         newCell.appendChild(newText);
                         let newCell2 = newRow.insertCell(1);
-                        newText = document.createTextNode(tableInfo.reps.value);
+                        newText = document.createTextNode(reps);
                         newCell2.appendChild(newText);
                         let newCell3 = newRow.insertCell(2);
-                        newText = document.createTextNode(tableInfo.weight.value);
+                        newText = document.createTextNode(weight);
                         newCell3.appendChild(newText);
                         let newCell4 = newRow.insertCell(3);
-                        newText = document.createTextNode(tableInfo.date.value);
+                        newText = document.createTextNode(date);
                         newCell4.appendChild(newText);
                         let newCell5 = newRow.insertCell(4);
-                        newText = document.createTextNode(tableInfo.unit.value);
+                        newText = document.createTextNode(unit);
                         newCell5.appendChild(newText);
                     }
 
-                    addRow('myTable');
+                    addRow('myTable', name, reps, weight, date, unit);
                 }
                 else
                 {
