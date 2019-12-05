@@ -26,21 +26,12 @@ app.get('/', function (req, res)
     res.render('home');
 });
 
-app.post('/insert', function (req, res)
+app.post('/', function (req, res)
 {
     var context = {};
     context.dataType = "It is Posting";
     
     console.log(context.stupidVar);
-    res.render('home', context)
-});
-
-app.get('/insert', function (req, res)
-{
-    var context = {};
-    context.dataType = "something else happend";
-
-    console.log(context.dataType);
     res.render('home', context)
 });
 
