@@ -35,6 +35,15 @@ app.post('/insert', function (req, res)
     res.render('home', context)
 });
 
+app.get('/insert', function (req, res)
+{
+    var context = {};
+    context.dataType = "something else happend";
+
+    console.log(context.dataType);
+    res.render('home', context)
+});
+
 app.use(function (req, res, next)
 {
     res.status(404);
