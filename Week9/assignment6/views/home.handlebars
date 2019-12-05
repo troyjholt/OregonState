@@ -25,12 +25,13 @@
     function dataCheck()
     {                                   
         var payload = {};
-        payload.reset = false;
-        payload.name = document.getElementById('uName').value.toLowerCase();
-        payload.reps = document.getElementById('uReps').value.toLowerCase();
-        payload.weight = document.getElementById('uWeight').value.toLowerCase();
-        payload.date = document.getElementById('uDate').value.toLowerCase();
-        payload.unit = document.getElementById('uUnit').value.toLowerCase();
+        paylod.stupidVar = "hello";
+        //payload.reset = false;
+        //payload.name = document.getElementById('uName').value.toLowerCase();
+        //payload.reps = document.getElementById('uReps').value.toLowerCase();
+        //payload.weight = document.getElementById('uWeight').value.toLowerCase();
+        //payload.date = document.getElementById('uDate').value.toLowerCase();
+        //payload.unit = document.getElementById('uUnit').value.toLowerCase();
 
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
@@ -50,7 +51,7 @@
                 }
             }
         );
-        var insertData = JSON.stringify(payload);
-        req.send(insertData);
+        payload = JSON.stringify(payload);
+        req.send(payload);
     }
 </script>
