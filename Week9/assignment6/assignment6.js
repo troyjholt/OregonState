@@ -13,7 +13,6 @@ var pool = mysql.createPool({
 });*/
 
 //module.exports.pool = pool;
-app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine);
@@ -26,12 +25,17 @@ app.get('/', function (req, res, next)
     res.render('home');
 });
 
-app.post('/insert', function (req, res)
+app.post('/insert', function (req, res, next)
 {
     var context = {};
 
     response.send("hello");
     response.end();
+});
+app.get('/insert', function (req, res, next)
+{
+    response.end();
+    res.render('home');
 });
 
 app.use(function (req, res, next)
