@@ -112,6 +112,7 @@
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
                     tableInfo = JSON.parse(req.responseText);
+                    console.log(req.responseText);
                     var name = tableInfo.name;
                     var reps = tableInfo.reps;
                     var weight = tableInfo.weight;
