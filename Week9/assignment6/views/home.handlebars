@@ -25,7 +25,7 @@
     function dataCheck()
     {                                   
         var payload = {};
-        paylod.stupidVar = "hello";
+        payload.stupidVar = "hello";
         //payload.reset = false;
         //payload.name = document.getElementById('uName').value.toLowerCase();
         //payload.reps = document.getElementById('uReps').value.toLowerCase();
@@ -36,7 +36,7 @@
         var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
         var req = new XMLHttpRequest();
-        req.open("GET", url, true);
+        req.open("POST", url, true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load',
             function ()                                                                                  
