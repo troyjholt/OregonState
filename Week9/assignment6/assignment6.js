@@ -21,12 +21,12 @@ app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
 
-app.get('/', function (req, res)
+app.get('/', function (req, res, next)
 {
     res.render('home');
 });
 
-app.post('/', function (req, res)
+app.post('/', function (req, res, next)
 {
     var context = {};
     context.dataType = "It is Posting";
