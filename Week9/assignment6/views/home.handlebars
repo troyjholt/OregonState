@@ -37,10 +37,8 @@
             var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
             req.open("POST", url, false);
-            req.setRequestHeader('Content-Type', 'application/json');
-            payload = JSON.stringify(payload);
-            req.send(payload);
-            event.preventDefault();
+            req.setRequestHeader('Content-Type', 'application/json');;
+            req.send(JSON.stringify(payload));
         })
     }
 
