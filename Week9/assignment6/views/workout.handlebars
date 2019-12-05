@@ -86,7 +86,7 @@
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
                     console.log(req.responseText);
-                    getData();
+
                 }
                 else
                 {
@@ -95,9 +95,11 @@
             }
         );
         req.send(JSON.stringify(payload));
+        getData();
 
         function getData()
         {
+            var req = new XMLHttpRequest();
             req.open('GET', url, true);
             req.setRequestHeader('Content-Type', 'application/json');
             req.addEventListener('load',
