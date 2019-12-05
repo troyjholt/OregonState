@@ -1,7 +1,11 @@
-var express = require('express');
-var app = express();
+const express = require('express')
+const app = express()
+const port = 6329
+
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /*var mysql = require('mysql');
 var pool = mysql.createPool({
@@ -13,12 +17,10 @@ var pool = mysql.createPool({
 });*/
 
 //module.exports.pool = pool;
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 6329);
-
+app.set('port', port);
 
 app.get('/', function (req, res, next)
 {
@@ -29,13 +31,16 @@ app.post('/insert', function (req, res, next)
 {
     var context = {};
 
-    response.send("hello");
-    response.end();
+    console.log('executing post');
+
+    res.send("hello");
 });
 app.get('/insert', function (req, res, next)
 {
-    response.end();
-    res.render('workout');
+    var context = {};
+
+    console.log('executing get');
+    res.render('workout', context);
 });
 
 app.use(function (req, res, next)
