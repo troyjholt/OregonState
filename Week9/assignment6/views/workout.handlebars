@@ -113,11 +113,11 @@
                     //window.location.href = "/workout";
                     tableInfo = req.responseText[1];
                     console.log(req.responseText);
-                    var name = tableInfo.name.value;
-                    var reps = tableInfo.reps.value;
-                    var weight = tableInfo.weight.value;
-                    var date = tableInfo.date.value;
-                    var unit = tableInfo.unit.value;
+                    var name = tableInfo.workouts.name;
+                    var reps = tableInfo.workouts.reps;
+                    var weight = tableInfo.workouts.weight;
+                    var date = tableInfo.workouts.date;
+                    var unit = tableInfo.workouts.lbs;
                     function addRow(tableID, name, reps, weight, date, unit)
                     {
                         let workoutTable = document.getElementById(tableID);
