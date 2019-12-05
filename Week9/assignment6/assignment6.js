@@ -68,18 +68,29 @@ app.post('/insert', function (req, res, next)
 app.get('/insert', function (req, res, next)
 {
     var context = {};
-    pool.query('SELECT * FROM workouts WHERE id=1', function (err, rows, fields)
+    pool.query('SELECT * FROM workouts', function (err, rows, fields)
     {
         if (err)
         {
             next(err);
             return;
         }
-        context.results = JSON.stringify(rows);
-        res.send(context);
-        res.render('workout');
+        for (var workout of result)
+        {
+            context.workout_data.push(
+                {
+                    'workout_name': workout.name,
+                    'workout_reps': workout.reps,
+                    'workout_weight': workout.weight,
+                    'workout_date': workout.date,
+                    'workout_unit': 'lbs'
+                }
+            );
+        }
+
     });
     console.log('executing get');
+    res.render('workout');
 });
 
 
