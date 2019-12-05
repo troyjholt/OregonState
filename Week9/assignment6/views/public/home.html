@@ -1,0 +1,27 @@
+<h1>Assignment 6</h1>
+<h3>by TJ Holt</h3>
+
+<input type="submit" id="uSubmit" />
+<h3>{{dataType}}</h3>
+<script>
+    document.addEventListener('DOMContentLoaded', dataCheck);
+
+    function dataCheck()
+    {
+        document.getElementById('uSubmit').addEventListener('click', function (event)
+        {
+            console.log("function Started");
+            var req = new XMLHttpRequest();
+            var payload = {};
+            payload.myWord = "hello";
+
+
+            var url = 'http://flip3.engr.oregonstate.edu:6329/';
+
+            req.open("POST", url, true);
+            req.setRequestHeader('Content-Type', 'application/json');;
+            req.send(JSON.stringify(payload));
+        })
+    }
+
+</script>
