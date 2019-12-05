@@ -4,7 +4,7 @@
 <input type="submit" id="uSubmit" />
 <span id="testThis">This is what should load up on first load</span>
 <script>
-    document.addEventListener('DOMContentLoaded', dataCheck);
+    document.addEventListener('load', dataCheck);
 
     function dataCheck()
     {
@@ -15,10 +15,11 @@
             var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
             req.open("POST", url, true);
-            req.setRequestHeader('Content-Type', 'application/json');;
+            req.setRequestHeader('Content-Type', 'application/json');
+            req.send(null);
             console.log(req.responseText);
         })
-         req.send(null);
+
     }
 
 </script>
