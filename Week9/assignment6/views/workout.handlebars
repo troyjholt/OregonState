@@ -63,6 +63,8 @@
 
 <script>
     var tableInfo;
+    var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
+
     function submitPost()
     {
         var payload = {};
@@ -72,8 +74,6 @@
         payload.workout_weight = document.getElementById('weight_field').value.toLowerCase();
         payload.workout_date = document.getElementById('date_field').value.toLowerCase();
         payload.workout_unit = document.getElementById('unit_field').value.toLowerCase();
-
-        var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
         var req = new XMLHttpRequest();
         req.open('POST', url, true);
