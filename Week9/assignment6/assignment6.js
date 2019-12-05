@@ -21,6 +21,19 @@ app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
 
+app.get('/', function (req, res, next)
+{
+    res.render('/home.html');
+});
+
+app.post('/', function (req, res, next)
+{
+    var context = {};
+    context.dataType = "It is Posting";
+   
+    res.render('home', context)
+});
+
 app.use(function (req, res, next)
 {
     res.status(404);
@@ -39,3 +52,4 @@ app.listen(app.get('port'), function ()
 {
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
