@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 });*/
 
 //module.exports.pool = pool;
-
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine);
@@ -53,4 +53,3 @@ app.listen(app.get('port'), function ()
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
 
-app.use(express.static("public"));
