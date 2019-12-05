@@ -21,19 +21,6 @@ app.set('view engine', 'handlebars');
 app.set('port', 6329);
 
 
-app.get('/', function (req, res, next)
-{
-    res.render('home');
-});
-
-app.post('/', function (req, res, next)
-{
-    var context = {};
-    context.dataType = "It is Posting";
-   
-    res.render('home', context)
-});
-
 app.use(function (req, res, next)
 {
     res.status(404);
