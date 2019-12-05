@@ -94,6 +94,7 @@ function submitPost()
         }
     );
     req.send(JSON.stringify(payload));
+    console.log(response.text);
 }
 
 function submitReset()
