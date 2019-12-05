@@ -1,25 +1,7 @@
 <h1>Assignment 6</h1>
 <h3>by TJ Holt</h3>
 
-<form style="width:25%; margin-top:30px;">
-    <!--<fieldset>
-        <legend>New Row</legend>
-        Name:
-        <input type="text" id="uName" required /><br />
-        Reps:
-        <input type="number" id="uReps" required /><br />
-        Weight:
-        <input type="number" id="uWeight" required /><br />
-        date:
-        <input type="date" id="uDate" required /><br />
-        unit:
-        <select id="uUnit" required>
-            <option [ngValue]="true">lbs</option>
-            <option [ngValue]="false">kg</option>
-        </select><br />
-    </fieldset>-->
-    <input type="submit" id="uSubmit"/>
-</form>
+<input type="submit" id="uSubmit" />
 <h3>{{dataType}}</h3>
 <script>
     document.addEventListener('DOMContentLoaded', dataCheck);
@@ -31,7 +13,7 @@
             console.log("function Started");
             var req = new XMLHttpRequest();
             var payload = {};
-            payload.stupidVar = "hello";
+            payload.myWord = "hello";
 
 
             var url = 'http://flip3.engr.oregonstate.edu:6329/';

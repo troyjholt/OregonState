@@ -30,8 +30,7 @@ app.post('/', function (req, res, next)
 {
     var context = {};
     context.dataType = "It is Posting";
-    
-    console.log(context.stupidVar);
+   
     res.render('home', context)
 });
 
