@@ -43,14 +43,13 @@
     <form action="" method="">
         <div>
             <table>
-                <tbody>
-                    {{#each workout_data}}
+                <tbody id="myTable">
                     <tr>
-                        <td>{{this.workout_name}}</td>
-                        <td>{{this.workout_reps}}</td>
-                        <td>{{this.workout_weight}}</td>
-                        <td>{{this.workout_date}}</td>
-                        <td>{{this.workout_unit}}</td>
+                        <td id="wName"></td>
+                        <td id="wReps"></td>
+                        <td id="wWeight"></td>
+                        <td id="wDate"></td>
+                        <td id="wunit"></td>
                         <td>
                             <input id="remove_row" type="button" value="Remove"></input>
                             <input id="edit_row" type="button" value="Edit"></input>
@@ -64,67 +63,102 @@
 </fieldset>
 
 <script>
-function submitPost()
-{
-    var payload = {};
-    payload.reset = false;
-    payload.workout_name = document.getElementById('name_field').value.toLowerCase();
-    payload.workout_reps = document.getElementById('reps_field').value.toLowerCase();
-    payload.workout_weight = document.getElementById('weight_field').value.toLowerCase();
-    payload.workout_date = document.getElementById('date_field').value.toLowerCase();
-    payload.workout_unit = document.getElementById('unit_field').value.toLowerCase();
+    var table info;
+    function submitPost()
+    {
+        var payload = {};
+        payload.reset = false;
+        payload.workout_name = document.getElementById('name_field').value.toLowerCase();
+        payload.workout_reps = document.getElementById('reps_field').value.toLowerCase();
+        payload.workout_weight = document.getElementById('weight_field').value.toLowerCase();
+        payload.workout_date = document.getElementById('date_field').value.toLowerCase();
+        payload.workout_unit = document.getElementById('unit_field').value.toLowerCase();
 
-    var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
+        var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
 
-    var req = new XMLHttpRequest();
-    req.open('POST', url, true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.addEventListener('load',
-        function()
-        {
-            if (req.status >= 200 && req.status <= 400)
+        var req = new XMLHttpRequest();
+        req.open('POST', url, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load',
+            function ()
             {
-                //response = JSON.parse(req.responseText);
-               // window.location.href = "/workout";
+                if (req.status >= 200 && req.status <= 400)
+                {
+                    //response = JSON.parse(req.responseText);
+                    //window.location.href = "/workout";
                     console.log(req.responseText);
+                    getData();
+                }
+                else
+                {
+                    console.log('Error in network request: ' + req.statusText);
+                }
             }
-            else
-            {
-                console.log('Error in network request: ' + req.statusText);
-            }
-        }
-    );
-    req.send(JSON.stringify(payload));
-}
+        );
+        req.send(JSON.stringify(payload));
 
-function submitReset()
-{
-    // Create the url to POST the weather info in JSON format.
-    var payload = {};
-    payload.reset = true;
-
-    var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
-
-    var req = new XMLHttpRequest();
-    req.open('POST', url, true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.addEventListener('load',
-        function()
+        function getData()
         {
-            if (req.status >= 200 && req.status <= 400)
-            {
-                //response = JSON.parse(req.responseText);
-               // window.location.href = "/workout";
-            }
-            else
-            {
-                console.log('Error in network request: ' + req.statusText);
-            }
+            req.open('GET', url, true);
+            req.setRequestHeader('Content-Type', 'application/json');
+            req.addEventListener('load',
+                function ()
+                {
+                    if (req.status >= 200 && req.status <= 400)
+                    {
+                        //response = JSON.parse(req.responseText);
+                        //window.location.href = "/workout";
+                        console.log(req.responseText);
+                        tableInfo = JSON.parse(req.responseText);
+                        function addRow(tableID)
+                        {
+                            let workoutTable = document.getElementById("myTable");
+                            let newRow = workoutTable.insertRow(-1);
+                            document.getElementById('wName').innerHTML = tableInfo.name;
+                            document.getElementById('wReps').innerHTML = tableInfo.reps;
+                            document.getElementById('wWeight').innerHTML = tableInfo.weight;
+                            document.getElementById('wDate').innerHTML = tableInfo.date;
+                            document.getElementById('wUnit').innerHTML = tableInfo.unit;
+                        }
+                    }
+                    else
+                    {
+                        console.log('Error in network request: ' + req.statusText);
+                    }
+                }
+            );
+            req.send(tableInfo);
         }
-    );
-    req.send(JSON.stringify(payload));
-}
+    }
 
-document.getElementById('submit_post').addEventListener('click', submitPost);
-document.getElementById('submit_reset').addEventListener('click', submitReset);
+    function submitReset()
+    {
+        // Create the url to POST the weather info in JSON format.
+        var payload = {};
+        payload.reset = true;
+
+        var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
+
+        var req = new XMLHttpRequest();
+        req.open('POST', url, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load',
+            function ()
+            {
+                if (req.status >= 200 && req.status <= 400)
+                {
+                    //response = JSON.parse(req.responseText);
+                    // window.location.href = "/workout";
+                }
+                else
+                {
+                    console.log('Error in network request: ' + req.statusText);
+                }
+            }
+        );
+        req.send(JSON.stringify(payload));
+    }
+
+    document.getElementById('submit_post').addEventListener('click', submitPost);
+    document.getElementById('submit_reset').addEventListener('click', submitReset);
 </script>
