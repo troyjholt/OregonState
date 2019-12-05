@@ -29,7 +29,7 @@ app.get('/', function (req, res)
 app.post('/insert', function (req, res)
 {
     var context = {};
-    context.dataType = "POST";
+    context.dataType = "It is Posting";
     
     console.log(context.dataType);
     res.render('home', context)
