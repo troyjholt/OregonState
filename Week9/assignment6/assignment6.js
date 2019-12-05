@@ -75,11 +75,12 @@ app.get('/insert', function (req, res, next)
             next(err);
             return;
         }
-        context.name = workouts.name;
-        context.reps = workouts.reps;
-        context.weight = workouts.weight;
-        context.date = workouts.date;
-        context.unit = workouts.lbs;
+        context.results = JSON.stringify(rows);
+        context.results.name = workouts.name;
+        context.results.reps = workouts.reps;
+        context.results.weight = workouts.weight;
+        context.results.date = workouts.date;
+        context.results.unit = workouts.lbs;
 
         res.send(json.stringify(context));
     });
