@@ -21,8 +21,7 @@
             req.open("POST", url, true);
             req.setRequestHeader('Content-Type', 'application/json');;
             req.send(JSON.stringify(payload));
-            var response = req.response;
-            console.log(response);
+            console.log(req.responseText);
         })
     }
 
