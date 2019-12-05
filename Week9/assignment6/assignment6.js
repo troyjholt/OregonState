@@ -31,6 +31,7 @@ app.post('/insert', function (req, res)
     var context = {};
 
     res.send("Look right here you little bitch");
+    return req.response("hi");
 });
 
 app.use(function (req, res, next)
