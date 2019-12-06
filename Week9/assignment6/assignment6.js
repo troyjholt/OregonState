@@ -90,8 +90,6 @@ app.get('/insert', function (req, res, next)
             context.workoutList.push(entry);
 
         }
-
-        context = JSON.stringify(rows);
         console.log("check below Losers!");
         console.log(rows[0]['RowDataPacket']);
         res.send(context);
