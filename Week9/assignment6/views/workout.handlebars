@@ -124,7 +124,6 @@
             {
                 if (req.status >= 200 && req.status <= 400)
                 {
-                    req.send(payload.id);
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
                     tableInfo = req.responseText;
@@ -168,7 +167,7 @@
                 }
             }
         );
-        req.send(payload.id);
+        req.send(tableSize);
     }
 
     function submitReset()
