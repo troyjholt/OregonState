@@ -86,6 +86,9 @@ app.get('/insert', function (req, res, next)
             var entry = {};
             entry.name = workout.name;
             entry.reps = workout.reps;
+            entry.weight = workout.weight;
+            entry.date = workout.date;
+            entry.lbs = workout.lbs;
 
             context.workoutList.push(entry);
 

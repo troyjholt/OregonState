@@ -130,28 +130,28 @@
                     console.log(tData.workoutList);
                     console.log(tData.workoutList[0].name);
                     console.log('and then we did');
-                    console.log(tData[0].length);
-                    console.log("array size is " + JSON.parse(tData).workoutList.length);
-                    function tableTime(tData)
+                    function tableTime(tData, tableID)
                     {
-                        
-                        let workoutTable = document.getElementById(tableID);
-                        let newrow = workouttable.insertrow(-1);
-                        let newcell = newrow.insertcell(0);
-                        let newtext = document.createtextnode(name);
-                        newcell.appendchild(newtext);
-                        let newcell2 = newrow.insertcell(1);
-                        newtext = document.createtextnode(reps);
-                        newcell2.appendchild(newtext);
-                        let newcell3 = newrow.insertcell(2);
-                        newtext = document.createtextnode(weight);
-                        newcell3.appendchild(newtext);
-                        let newcell4 = newrow.insertcell(3);
-                        newtext = document.createtextnode(date);
-                        newcell4.appendchild(newtext);
-                        let newcell5 = newrow.insertcell(4);
-                        newtext = document.createtextnode(unit);
-                        newcell5.appendchild(newtext);
+                        for (var item of tData.workoutList)
+                        {
+                            let workoutTable = document.getElementById(tableID);
+                            let newrow = workouttable.insertrow(-1);
+                            let newcell = newrow.insertcell(0);
+                            let newtext = document.createtextnode(tData.workoutList[0].name);
+                            newCell.appendChild(newText);
+                            let newcell = newrow.insertcell(1);
+                            let newtext = document.createtextnode(tData.workoutList[0].reps);
+                            newCell.appendChild(newText);
+                            let newcell = newrow.insertcell(2);
+                            let newtext = document.createtextnode(tData.workoutList[0].weight);
+                            newCell.appendChild(newText);
+                            let newcell = newrow.insertcell(3);
+                            let newtext = document.createtextnode(tData.workoutList[0].date);
+                            newCell.appendChild(newText);
+                            let newcell = newrow.insertcell(4);
+                            let newtext = document.createtextnode(tData.workoutList[0].lbs);
+                            newCell.appendChild(newText);
+                        }
                     }
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
