@@ -88,7 +88,7 @@ app.get('/insert', function (req, res, fields)
         }
     });
     context = JSON.stringify(context);
-    send(context);
+    res.send(context);
     res.render('workout', context);
 });
 
