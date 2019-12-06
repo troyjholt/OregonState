@@ -124,42 +124,44 @@
             {
                 if (req.status >= 200 && req.status <= 400)
                 {
-                    //response = JSON.parse(req.responseText);
-                    //window.location.href = "/workout";
                     tableInfo = req.responseText;
                     console.log(tableInfo);
-                    var tData = JSON.parse(tableInfo);
-                    console.log("test 1 " + tData);
-                    var test2 = tData[0].name;
-                    console.log("test 2 " + test2);
-                    var name = tData[0].name;
-                    console.log(name);
-                    var reps = tData[0].reps;
-                    var weight = tData[0].weight;
-                    var date = tData[0].date;
-                    var unit = tData[0].lbs;
-                    function addRow(tableID, name, reps, weight, date, unit)
-                    {
-                        let workoutTable = document.getElementById(tableID);
-                        let newRow = workoutTable.insertRow(-1);
-                        let newCell = newRow.insertCell(0);
-                        let newText = document.createTextNode(name);
-                        newCell.appendChild(newText);
-                        let newCell2 = newRow.insertCell(1);
-                        newText = document.createTextNode(reps);
-                        newCell2.appendChild(newText);
-                        let newCell3 = newRow.insertCell(2);
-                        newText = document.createTextNode(weight);
-                        newCell3.appendChild(newText);
-                        let newCell4 = newRow.insertCell(3);
-                        newText = document.createTextNode(date);
-                        newCell4.appendChild(newText);
-                        let newCell5 = newRow.insertCell(4);
-                        newText = document.createTextNode(unit);
-                        newCell5.appendChild(newText);
-                    }
+                    //response = JSON.parse(req.responseText);
+                    //window.location.href = "/workout";
+                    //tableInfo = req.responseText;
+                    //console.log(tableInfo);
+                    //var tData = JSON.parse(tableInfo);
+                    //console.log("test 1 " + tData);
+                    //var test2 = tData[0].name;
+                    //console.log("test 2 " + test2);
+                    //var name = tData[0].name;
+                    //console.log(name);
+                    //var reps = tData[0].reps;
+                    //var weight = tData[0].weight;
+                    //var date = tData[0].date;
+                    //var unit = tData[0].lbs;
+                    //function addRow(tableID, name, reps, weight, date, unit)
+                    //{
+                    //    let workoutTable = document.getElementById(tableID);
+                    //    let newRow = workoutTable.insertRow(-1);
+                    //    let newCell = newRow.insertCell(0);
+                    //    let newText = document.createTextNode(name);
+                    //    newCell.appendChild(newText);
+                    //    let newCell2 = newRow.insertCell(1);
+                    //    newText = document.createTextNode(reps);
+                    //    newCell2.appendChild(newText);
+                    //    let newCell3 = newRow.insertCell(2);
+                    //    newText = document.createTextNode(weight);
+                    //    newCell3.appendChild(newText);
+                    //    let newCell4 = newRow.insertCell(3);
+                    //    newText = document.createTextNode(date);
+                    //    newCell4.appendChild(newText);
+                    //    let newCell5 = newRow.insertCell(4);
+                    //    newText = document.createTextNode(unit);
+                    //    newCell5.appendChild(newText);
+                    //}
 
-                    addRow('myTable', name, reps, weight, date, unit);
+                    //addRow('myTable', name, reps, weight, date, unit);
                 }
                 else
                 {
@@ -167,7 +169,7 @@
                 }
             }
         );
-        req.send();
+        req.send(tableInfo);
     }
 
     function submitReset()
