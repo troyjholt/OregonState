@@ -188,6 +188,7 @@
                 {
                     //response = JSON.parse(req.responseText);
                     // window.location.href = "/workout";
+                    payload = JSON.stringify(payload);
                 }
                 else
                 {
@@ -195,7 +196,7 @@
                 }
             }
         );
-        req.send(JSON.stringify(payload));
+        req.send(payload);
     }
 
     document.getElementById('submit_post').addEventListener('click', submitPost);

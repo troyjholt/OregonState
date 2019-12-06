@@ -69,8 +69,9 @@ app.post('/insert', function (req, res, next)
 app.get('/insert', function (req, res, next)
 {
     var context = {};
+    var tableSize = req.query.id;
     console.log(req.body.id);
-    pool.query('SELECT * FROM workouts WHERE id = 1',
+    pool.query('SELECT * FROM workouts WHERE id = tableSize',
         [req.query.id],
         function (err, rows, result)
         {
