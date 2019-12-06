@@ -77,6 +77,7 @@ app.get('/insert', function (req, res, next)
                 next(err);
                 return;
             }
+            console.log(req.body.id)
             context = JSON.stringify(rows);
             res.send(context);
             res.render('workout');
