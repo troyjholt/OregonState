@@ -70,7 +70,7 @@ app.get('/insert', function (req, res, next)
 {
     var context = {};
     console.log(req.body.id);
-    pool.query('SELECT * FROM workouts WHERE id = ?',
+    pool.query('SELECT * FROM workouts WHERE id = 1',
         [req.query.id],
         function (err, rows, result)
         {
