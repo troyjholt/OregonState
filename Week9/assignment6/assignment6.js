@@ -69,7 +69,7 @@ app.get('/insert', function (req, res, next)
 {
     var context = {};
     pool.query('SELECT * FROM workouts WHERE id=?',
-        [req.query.id],
+        [req.body.id],
         function (err, rows, fields)
         {
             if (err)
