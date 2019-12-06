@@ -65,11 +65,12 @@ app.post('/insert', function (req, res, next)
 
     res.send("hello");
 });
+
 app.get('/insert', function (req, res, next)
 {
     var context = {};
     pool.query('SELECT * FROM workouts WHERE id=?',
-        [req.body.id],
+        [req.query.id],
         function (err, rows, fields)
         {
             if (err)

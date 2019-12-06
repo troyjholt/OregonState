@@ -78,11 +78,11 @@
     {
         var payload = {};
         payload.reset = false;
-        payload.workout_name = document.getElementById('name_field').value.toLowerCase();
-        payload.workout_reps = document.getElementById('reps_field').value.toLowerCase();
-        payload.workout_weight = document.getElementById('weight_field').value.toLowerCase();
-        payload.workout_date = document.getElementById('date_field').value.toLowerCase();
-        payload.workout_unit = document.getElementById('unit_field').value.toLowerCase();
+        payload.name = document.getElementById('name_field').value.toLowerCase();
+        payload.reps = document.getElementById('reps_field').value.toLowerCase();
+        payload.weight = document.getElementById('weight_field').value.toLowerCase();
+        payload.date = document.getElementById('date_field').value.toLowerCase();
+        payload.unit = document.getElementById('unit_field').value.toLowerCase();
 
         var req = new XMLHttpRequest();
         req.open('POST', url, true);
