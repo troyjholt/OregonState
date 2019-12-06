@@ -71,14 +71,13 @@ app.get('/insert', function (req, res, next)
     var context = {};
     pool.query('SELECT * FROM workouts WHERE id=?',
         [req.query.id],
-        function (err, rows, fields)
+        function (err, rows, result)
         {
             if (err)
             {
                 next(err);
                 return;
             }
-            console.log(req.body.id)
             context = JSON.stringify(rows);
             res.send(context);
             res.render('workout');
