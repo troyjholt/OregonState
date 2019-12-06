@@ -111,6 +111,7 @@
 
     function getData()
     {
+        var theTable = document.getElementById('myTable');
         console.log("tableSize = " + tableSize);
         var payload = {};
         payload.reset = false;
@@ -153,6 +154,7 @@
                             newCell4.appendChild(newText);
                         }
                     }
+                    tableTime(tData, theTable);
                     //response = JSON.parse(req.responseText);
                     //window.location.href = "/workout";
                     //tableInfo = req.responseText;
