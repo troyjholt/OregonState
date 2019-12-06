@@ -78,9 +78,17 @@ app.get('/insert', function (req, res, next)
             return;
         }
 
+        context.workoutList = [];
+       
+
         for (var workout of rows)
         {
-            console.log(workout);
+            var entry = {};
+            entry.name = workout.name;
+            entry.reps = workout.reps;
+
+            context.workoutList.push(entry);
+
         }
 
         context = JSON.stringify(rows);
