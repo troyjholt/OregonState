@@ -127,6 +127,9 @@
                     tableInfo = req.responseText;
                     console.log(tableInfo);
                     var tData = JSON.parse(tableInfo);
+                    console.log(tData.workoutList);
+                    console.log('and then we did');
+                    console.log(tData[0].length);
                     console.log("array size is " + JSON.parse(tData).workoutList.length);
                     function tableTime(tData)
                     {
