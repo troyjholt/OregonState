@@ -168,7 +168,7 @@
                 }
             }
         );
-        req.send(payload);
+        req.send(JSON.stringify(payload));
     }
 
     function submitReset()
