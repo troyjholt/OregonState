@@ -70,11 +70,11 @@ app.post('/insert', function (req, res, next)
 app.get('/insert', function (req, res, fields)
 {
     var context = {};
-    pool.query('SELECT * FROM workouts', function (err, result, fields)
+    pool.query('SELECT * FROM workouts', function (err, rows, fields)
     {
         if (err) throw err;
         console.log(result);
-        for (var workout of result)
+        for (var workout of rows)
         {
             context.workout_data.push(
                 {
