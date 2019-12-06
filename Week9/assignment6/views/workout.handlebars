@@ -136,21 +136,21 @@
                         for (var item of tData.workoutList)
                         {
                             let workoutTable = document.getElementById(tableID);
-                            let newrow = workoutTable.insertrow(-1);
-                            let newcell = newrow.insertcell(0);
+                            let newRow = workoutTable.insertRow(-1);
+                            let newcell = newRow.insertcell(0);
                             let newtext = document.createtextnode(tData.workoutList[0].name);
                             newCell.appendChild(newText);
-                            let newcell1 = newrow.insertcell(1);
-                            newtext = document.createtextnode(tData.workoutList[0].reps);
+                            let newcell1 = newRow.insertcell(1);
+                            newText = document.createtextnode(tData.workoutList[0].reps);
                             newCell1.appendChild(newText);
-                            let newcell2 = newrow.insertcell(2);
-                            newtext = document.createtextnode(tData.workoutList[0].weight);
+                            let newcell2 = newRow.insertcell(2);
+                            newText = document.createtextnode(tData.workoutList[0].weight);
                             newCell2.appendChild(newText);
-                            let newcell3 = newrow.insertcell(3);
-                            newtext = document.createtextnode(tData.workoutList[0].date);
+                            let newcell3 = newRow.insertcell(3);
+                            newText = document.createtextnode(tData.workoutList[0].date);
                             newCell3.appendChild(newText);
-                            let newcell4 = newrow.insertcell(4);
-                            newtext = document.createtextnode(tData.workoutList[0].lbs);
+                            let newcell4 = newRow.insertcell(4);
+                            newText = document.createtextnode(tData.workoutList[0].lbs);
                             newCell4.appendChild(newText);
                         }
                     }
