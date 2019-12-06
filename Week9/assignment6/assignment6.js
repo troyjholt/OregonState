@@ -77,6 +77,12 @@ app.get('/insert', function (req, res, next)
             next(err);
             return;
         }
+
+        for (var workout of rows)
+        {
+            console.log(workout);
+        }
+
         context = JSON.stringify(rows);
         console.log("check below Losers!");
         console.log(rows[0]['RowDataPacket']);
