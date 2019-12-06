@@ -115,7 +115,7 @@
         var payload = {};
         payload.reset = false;
         payload.id = tableSize;
-        console.log("payloadsize = " + payload.size);
+        console.log("payloadsize = " + payload.id);
         var req = new XMLHttpRequest();
         req.open('GET', url, true);
         req.setRequestHeader('Content-Type', 'application/json');
@@ -168,7 +168,7 @@
                 }
             }
         );
-        req.send();
+        req.send(payload);
     }
 
     function submitReset()
