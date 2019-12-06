@@ -74,20 +74,9 @@ app.get('/insert', function (req, res, fields)
     {
         if (err) throw err;
         console.log(result);
-        for (var workout of rows)
-        {
-            context.workout_data.push(
-                {
-                    'workout_name': workout.name,
-                    'workout_reps': workout.reps,
-                    'workout_weight': workout.weight,
-                    'workout_date': workout.date,
-                    'workout_unit': 'lbs'
-                }
-            );
-        }
+        context = JSON.stringify(rows);
     });
-    context = JSON.stringify(rows);
+
     res.send(context);
     res.render('workout', context);
 });
