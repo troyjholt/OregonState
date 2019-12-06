@@ -67,18 +67,23 @@ app.post('/insert', function (req, res, next)
 });
 
 
-app.get('/insert', function (req, res, fields)
+app.get('/insert', function (req, res, next)
 {
     var context = {};
     pool.query('SELECT * FROM workouts', function (err, rows, fields)
     {
-        if (err) throw err;
+        if (err)
+        {
+            next(err);
+            return;
+        }
         console.log(result);
         context = JSON.stringify(rows);
+        res.send(context);
+        res.render('workout', context);
     });
 
-    res.send(context);
-    res.render('workout', context);
+
 });
 
 
