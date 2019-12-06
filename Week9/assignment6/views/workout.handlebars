@@ -74,7 +74,7 @@
     var url = 'http://flip3.engr.oregonstate.edu:6329/insert';
     console.log("tableSize = " + tableSize);
 
-    function submitPost(tableSize)
+    function submitPost()
     {
         var payload = {};
         payload.reset = false;
@@ -106,10 +106,10 @@
         req.send(JSON.stringify(payload));
         tableSize = tableSize + 1;
         console.log("tableSize = " + tableSize);
-        getData(tableSize);
+        getData();
     }
 
-    function getData(tableSize)
+    function getData()
     {
         console.log("tableSize = " + tableSize);
         var payload = {};
