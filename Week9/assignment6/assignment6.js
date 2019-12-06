@@ -66,7 +66,33 @@ app.post('/insert', function (req, res, next)
     res.send("hello");
 });
 
-app.get('/insert', function (req, res, next)
+
+app.get('/insert', function (req, res, fields)
+{
+    var context = {};
+    pool.query('SELECT * FROM workouts', function (err, result, fields)
+    {
+        if (err) throw err;
+        console.log(result);
+        for (var workout of result)
+        {
+            context.workout_data.push(
+                {
+                    'workout_name': workout.name,
+                    'workout_reps': workout.reps,
+                    'workout_weight': workout.weight,
+                    'workout_date': workout.date,
+                    'workout_unit': 'lbs'
+                }
+            );
+        }
+    });
+
+    res.render('workout', context);
+});
+
+
+/*app.get('/insert', function (req, res, next)
 {
     var context = {};
     var tableSize = req.query.tableSize;
@@ -85,7 +111,7 @@ app.get('/insert', function (req, res, next)
             res.render('workout');
         });
     console.log('executing get');
-});
+});*/
 
 
 //app.post('/reset', function (req, res, next)
