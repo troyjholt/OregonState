@@ -77,13 +77,11 @@ app.get('/insert', function (req, res, next)
             next(err);
             return;
         }
-        console.log(result);
         context = JSON.stringify(rows);
         res.send(context);
-        res.render('workout', context);
+        res.render('workout');
     });
-
-
+    console.log('executing GET');
 });
 
 
