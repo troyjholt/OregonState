@@ -284,6 +284,10 @@ int minimum(int x, int y, int z)
 }
 /*
  * Levenshtein algorithm I got from https://en.wikipedia.org/wiki/Levenshtein_distance
+ * s = user inputted word.
+ * m = the users word length.
+ * t = dictionary word being compared.
+ * n = dictionary word length.
  */
 int get_lev_dist(char *s, int m, char *t, int n)
 {
@@ -328,8 +332,6 @@ int get_lev_dist(char *s, int m, char *t, int n)
 
 	return d[m][n];
 }
-
-
 
 /**
  * Allocates a string for the next word in the file and returns it. This string
@@ -401,7 +403,6 @@ void loadDictionary(FILE* file, HashMap* map)
 int main(int argc, const char** argv)
 {
     HashMap* map = hashMapNew(1000);
-
     FILE* file = fopen("dictionary.txt", "r");
     clock_t timer = clock();
     loadDictionary(file, map);
@@ -412,9 +413,7 @@ int main(int argc, const char** argv)
     char ch;
     char inputBuffer[256];
     int quit = 0;
-    //char * temp;
-    int tempnum;
-    int sizenum;
+
     struct LinkedList* list = linkedListCreate();
 
     while (!quit)
@@ -423,11 +422,14 @@ int main(int argc, const char** argv)
         printf("Enter a word or \"quit\" to quit: ");
         scanf("%s", inputBuffer);
 
+        //first check to see if the user wants to quit, then it breaks out of loop.
         if (strcmp(inputBuffer, "quit") == 0)
         {
             quit = 1;
+            break;
         }
 
+        // This changes all the users letters to lower case.
         while (inputBuffer[i])
         {
         	ch = inputBuffer[i];
@@ -435,29 +437,53 @@ int main(int argc, const char** argv)
         	i++;
         }
 
-        // if the word matches a word in the dictionary.
+        // Checks if the word matches any in the dictionary.
         if (hashMapGet(map, inputBuffer) != 0)
         {
         	printf("The inputted word \"%s\" is spelled correctly.\n", inputBuffer);
         }
-        // we do the spell check.
+
+        // If the word is not in the dictionary, we run the spell check. It uses
+        // the levenshtien algorithm.
         else
         {
+        	// This gets the length of the users word.
+            int wordLength = strlen(inputBuffer);
+
+            // This cycles through the dictionary and compares users word to dictionary words.
         	for (int i = 0; i < hashMapSize(map); i++)
         	{
         		struct HashLink *current = map->table[i];
-        		struct Link *finder = list->frontSentinel;
         		while (current != NULL)
         		{
-        			current->value = get_lev_dist(inputBuffer, strlen(inputBuffer), current->key, strlen(current->key));
-        			linkedListAdd(list, current->key, current->value);
+        			/**
+        			 * This if statment speeds up the process of finding words in the dictionary.
+        			 * It is currently set to weed out the words that are 2 letters longer and
+        			 * 2 letters shorter than the users inputted word. You can speed it up further
+        			 * by changing both "2" ints to "1". You can also search more words by making those
+        			 * ints larger, such as changing them to "5".
+        			 */
+        			if((strlen(current->key) > (wordLength + 2)) || (strlen(current->key) < (wordLength - 2)))
+        			{
+        				current = current->next;
+        			}
 
-        			current = current->next;
+        			/**
+        			 * This will add the current distance value and current word to a linked list.
+        			 * The linked list sorts the distance values as it inserts them. Then after it
+        			 * Then after it has searched the dictionary it will print out the first 5 words.
+        			 */
+
+        			else
+        			{
+        				current->value = get_lev_dist(inputBuffer, strlen(inputBuffer), current->key, strlen(current->key));
+        				linkedListAdd(list, current->key, current->value);
+        				current = current->next;
+        			}
         		}
         	}
 
         	printf("The inputted word \"%s\" is spelled incorrectly.\n", inputBuffer);
-
         	printf("Did you mean ");
         	linkedListPrint(list);
         	while (list->size > 0)
