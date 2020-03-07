@@ -6,7 +6,10 @@
 #include <string.h>
 #include <ctype.h>
 
-
+/**
+ * I added a linked list functionality for the sole purpose of storing the
+ * top 5 closest words.
+ */
 struct Link
 {
     char * word;
@@ -33,18 +36,44 @@ static void init(struct LinkedList* list)
 	list->frontSentinel->prev = NULL;
 	list->backSentinel->prev = list->frontSentinel;
 	list->backSentinel->next = NULL;
+	list->frontSentinel->value = 0;
+	list->frontSentinel->word = NULL;
+	list->backSentinel->value = 0;
+	list->backSentinel->word = NULL;
 	list->size = 0;
 }
 
-static void addLinkBefore(struct LinkedList* list, struct Link* link, char* word, int* value)
+static void addLinkBefore(struct LinkedList* list, struct Link* link, char* word, int value)
 {
 	struct Link* newlink = (struct Link *) malloc(sizeof(struct Link));
 	newlink->value = value;
 	newlink->word = word;
-	newlink->prev = link->prev;
-	link->prev->next = newlink;
-	newlink->next = link;
-	link->prev = newlink;
+
+	if ((link != list->backSentinel) && (link != list->frontSentinel))
+	{
+		newlink->prev = link->prev;
+		if (newlink->prev != NULL)
+		{
+			newlink->prev->next = newlink;
+		}
+		newlink->next = link;
+		link->prev = newlink;
+	}
+	else if (link == list->frontSentinel)
+	{
+		newlink->next = list->frontSentinel->next;
+		newlink->prev = list->frontSentinel;
+		list->frontSentinel->next = newlink;
+		newlink->next->prev = newlink;
+	}
+	else
+	{
+		newlink->next = list->backSentinel;
+		newlink->prev = list->backSentinel->prev;
+		list->backSentinel->prev = newlink;
+		newlink->prev->next = newlink;
+	}
+
 	list->size++;
 }
 
@@ -61,6 +90,45 @@ struct LinkedList* linkedListCreate()
 	struct LinkedList* list = malloc(sizeof(struct LinkedList));
 	init(list);
 	return list;
+}
+
+
+/**
+	Returns 1 if the deque is empty and 0 otherwise.
+	param:	deque	struct LinkedList ptr
+	pre:	deque is not null
+	post:	none
+	ret:	1 if its size is 0 (empty), otherwise 0 (not empty)
+ */
+int linkedListIsEmpty(struct LinkedList* deque)
+{
+	if (deque->size >= 1)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+/**
+	Removes the link at the front of the deque.
+	param: 	deque 	struct LinkedList ptr
+	pre:	deque is not null
+	pre:	deque is not empty
+	post:	first link is removed and freed (call to removeLink)
+ */
+void linkedListRemoveFront(struct LinkedList* deque)
+{
+	if (deque != NULL)
+	{
+		if (deque->frontSentinel->next != deque->backSentinel)
+		{
+			struct Link *garbage = deque->frontSentinel->next;
+			removeLink(deque, garbage);
+		}
+	}
 }
 
 void linkedListDestroy(struct LinkedList* list)
@@ -83,7 +151,7 @@ void linkedListDestroy(struct LinkedList* list)
 	post: 	link is created w/ param value stored before current first link
 			(call to addLinkBefore)
  */
-void linkedListAddFront(struct LinkedList* list, char* word, int* value)
+void linkedListAddFront(struct LinkedList* list, char* word, int value)
 {
 	struct Link* newlink = (struct Link *) malloc(sizeof(struct Link));
 	newlink->value = value;
@@ -91,6 +159,8 @@ void linkedListAddFront(struct LinkedList* list, char* word, int* value)
 	list->frontSentinel->next = newlink;
 	newlink->next = list->backSentinel;
 	newlink->prev = list->frontSentinel;
+	list->backSentinel->prev = newlink;
+	list->size++;
 }
 
 /**
@@ -101,7 +171,7 @@ void linkedListAddFront(struct LinkedList* list, char* word, int* value)
 	post: 	link is created with given value before last link (sentinel)
 			(call to addLinkBefore)
  */
-void linkedListAddBack(struct LinkedList* deque, char* word, int* value)
+void linkedListAddBack(struct LinkedList* deque, char* word, int value)
 {
 	addLinkBefore(deque, deque->backSentinel, word, value);
 }
@@ -133,25 +203,6 @@ char linkedListBack(struct LinkedList* deque)
 }
 
 /**
-	Removes the link at the front of the deque.
-	param: 	deque 	struct LinkedList ptr
-	pre:	deque is not null
-	pre:	deque is not empty
-	post:	first link is removed and freed (call to removeLink)
- */
-void linkedListRemoveFront(struct LinkedList* deque)
-{
-	if (deque != NULL)
-	{
-		if (deque->frontSentinel->next != deque->backSentinel)
-		{
-			struct Link *garbage = deque->frontSentinel->next;
-			removeLink(deque, garbage);
-		}
-	}
-}
-
-/**
 	Removes the link at the back of the deque.
 	param: 	deque 	struct LinkedList ptr
 	pre:	deque is not null
@@ -170,24 +221,6 @@ void linkedListRemoveBack(struct LinkedList* deque)
 	}
 }
 
-/**
-	Returns 1 if the deque is empty and 0 otherwise.
-	param:	deque	struct LinkedList ptr
-	pre:	deque is not null
-	post:	none
-	ret:	1 if its size is 0 (empty), otherwise 0 (not empty)
- */
-int linkedListIsEmpty(struct LinkedList* deque)
-{
-	if (deque->size >= 1)
-	{
-		return 0;
-	}
-	else
-	{
-		return 1;
-	}
-}
 
 /**
 	Prints the values of the links in the deque from front to back.
@@ -216,19 +249,67 @@ void linkedListPrint(struct LinkedList* deque)
 			Note that bag doesn't specify where new link should be added;
 			can be anywhere in bag according to its ADT.
  */
-void linkedListAdd(struct LinkedList* bag, char* word, int* value)
+void linkedListAdd(struct LinkedList* list, char* word, int value)
 {
-	struct Link *finder = bag->frontSentinel;
-	if (finder->next == NULL)
+	int checker = 0;
+	struct Link *front = list->frontSentinel;
+	struct Link *back = list->backSentinel;
+	struct Link* newlink = (struct Link *) malloc(sizeof(struct Link));
+	newlink->value = value;
+	newlink->word = word;
+
+	if ((list->size >= 5) && (value > list->backSentinel->prev->value))
 	{
-		linkedListAddFront(bag, word, value);
+		return;
 	}
-	while (value >= finder->value)
+	if (front->next == back)
+	{
+		front->next = newlink;
+		back->prev = newlink;
+		newlink->next = back;
+		newlink->prev = front;
+	}
+	else
+	{
+		while (value >= front->value)
+		{
+			if (front->next != back)
+			{
+				front = front->next;
+			}
+			if (front->next == back)
+			{
+				newlink->prev = back->prev;
+				newlink->next = back;
+				back->prev->next = newlink;
+				back->prev = newlink;
+				checker = 1;
+				break;
+			}
+		}
+
+		if (checker == 0)
+		{
+			newlink->prev = front->prev;
+			newlink->next = front;
+			front->prev->next = newlink;
+			front->prev = newlink;
+		}
+	}
+	list->size++;
+}
+	/*struct Link *finder = list->frontSentinel;
+	if (finder->next == list->backSentinel)
+	{
+		linkedListAddFront(list, word, value);
+		return;
+	}
+	while ((value >= finder->value) && (finder != list->backSentinel))
 	{
 		finder = finder->next;
 	}
-		addLinkBefore(bag, finder ,word, value);
-}
+		addLinkBefore(list, finder ,word, value);
+}*/
 
 /**
 	Returns 1 if a link with the value is in the bag and 0 otherwise.
@@ -251,27 +332,6 @@ int linkedListContains(struct LinkedList* bag, char value)
 	return 0;
 }
 
-/**
-	Removes the first occurrence of a link with the given value.
-	param:	bag		struct LinkedList ptr
-	param: 	value 	TYPE
-	pre: 	bag is not null
-	post:	if link with given value found, link is removed
-			(call to removeLink)
- */
-void linkedListRemove(struct LinkedList* bag, char value)
-{
-	struct Link* finder = bag->frontSentinel;
-	for (int i = 0; i < bag->size; i++)
-	{
-		if (finder->value == value)
-		{
-			removeLink(bag, finder);
-			break;
-		}
-		finder = finder->next;
-	}
-}
 
 int minimum(int x, int y, int z)
 {
@@ -447,6 +507,7 @@ int main(int argc, const char** argv)
         // the levenshtien algorithm.
         else
         {
+            clock_t timer = clock();
         	// This gets the length of the users word.
             int wordLength = strlen(inputBuffer);
 
@@ -486,12 +547,16 @@ int main(int argc, const char** argv)
         	printf("The inputted word \"%s\" is spelled incorrectly.\n", inputBuffer);
         	printf("Did you mean ");
         	linkedListPrint(list);
+            timer = clock() - timer;
+            printf("Suggestions loaded in %f seconds\n", (float)timer / (float)CLOCKS_PER_SEC);
         	while (list->size > 0)
         	{
         		linkedListRemoveFront(list);
         	}
+        	//lsprintf("linked list size is now %i\n", list->size);
         }
     }
+    free(list);
     hashMapDelete(map);
     return 0;
 }
